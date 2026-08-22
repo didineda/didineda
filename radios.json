@@ -1,40 +1,3367 @@
-
-
-# ==============================================
-# 1. الطبقة الأساسية (Application)
-# ==============================================
-
-class RadioPlayerApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("📻 مشغل الصوتيات - القرآن والإذاعات")
-        self.root.geometry("900x650")
-        self.root.minsize(800, 500)
-
-        # متغيرات التشغيل
-        self.current_radio_id = None
-        self.current_radio_name = None
-        self.is_playing = False
-        self.player = None  # كائن VLC
-
-        # قاعدة البيانات
-        self.db_path = "radios.db"
-        if not os.path.exists(self.db_path):
-            messagebox.showerror("خطأ", f"قاعدة البيانات '{self.db_path}' غير موجودة!\nيرجى تشغيل سكربت الاستيراد أولاً.")
-            self.root.destroy()
-            return
-
-        # واجهة المستخدم
-        self.build_ui()
-
-        # تحميل التصنيفات
-        self.load_categories()
-
-    def build_ui(self):
-        """بناء مكونات الواجهة"""
-        # الإطار العلوي (عنوان + بحث)
-        top_frame = tk.Frame(self.root, bg="#2c3e50", height=70)
-        top_frame.pack(fill=tk.X, side=tk.TOP)
+{
+  "version": 2,
+  "date": "2026-08-22T00:38:42.943Z",
+  "radios": [
+    {
+      "id": "-OaIkapc8zo09DxSuJKs",
+      "name": "الرقية الشرعية",
+      "radio_url": "http://live.mp3quran.net:9936/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapekmDdaMzfkg0s",
+      "name": "آيات السكينة",
+      "radio_url": "http://live.mp3quran.net:9932/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdE",
+      "name": "آيات الشفاء",
+      "radio_url": "http://live.mp3quran.net:9926/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdF",
+      "name": "آيات السحر",
+      "radio_url": "http://live.mp3quran.net:9924/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdG",
+      "name": "آيات الأحكام",
+      "radio_url": "http://live.mp3quran.net:9922/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdH",
+      "name": "آيات الجهاد",
+      "radio_url": "http://live.mp3quran.net:9930/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdI",
+      "name": "آيات العذاب",
+      "radio_url": "http://live.mp3quran.net:9934/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdJ",
+      "name": "تلاوات خاشعة",
+      "radio_url": "http://live.mp3quran.net:9966/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdK",
+      "name": "تلاوات خاشعة 2",
+      "radio_url": "http://live.mp3quran.net:9968/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdL",
+      "name": "تلاوات السديس والشريم",
+      "radio_url": "http://live.mp3quran.net:9940/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdM",
+      "name": "تلاوات ماهر المعيقلي",
+      "radio_url": "http://live.mp3quran.net:9942/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdN",
+      "name": "تلاوات سعد الغامدي",
+      "radio_url": "http://live.mp3quran.net:9944/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdO",
+      "name": "تلاوات مشاري العفاسي",
+      "radio_url": "http://live.mp3quran.net:9946/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdP",
+      "name": "تلاوات ناصر القطامي",
+      "radio_url": "http://live.mp3quran.net:9948/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdQ",
+      "name": "تلاوات ياسر الدوسري",
+      "radio_url": "http://live.mp3quran.net:9950/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdR",
+      "name": "تلاوات متنوعة",
+      "radio_url": "http://live.mp3quran.net:9952/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdS",
+      "name": "قصار السور",
+      "radio_url": "http://live.mp3quran.net:9954/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdT",
+      "name": "تلاوات مجودة",
+      "radio_url": "http://live.mp3quran.net:9956/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdU",
+      "name": "تلاوات مرتلة",
+      "radio_url": "http://live.mp3quran.net:9958/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdV",
+      "name": "تلاوات معلم",
+      "radio_url": "http://live.mp3quran.net:9960/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdW",
+      "name": "تلاوات أطفال",
+      "radio_url": "http://live.mp3quran.net:9962/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdX",
+      "name": "تفسير القرآن",
+      "radio_url": "http://live.mp3quran.net:9964/;",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdY",
+      "name": "قصص الأنبياء",
+      "radio_url": "https://Qurango.net/radio/anbia",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIkapfqL9uH9JL5bdZ",
+      "name": "صور من حياة الصحابة",
+      "radio_url": "https://Qurango.net/radio/sahabah",
+      "category": "العامة"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeods",
+      "name": "مولد النبي",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D9%85%D9%88%D9%84%D8%AF%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%20%D8%B5%D9%84%D9%89%20%D8%A7%D9%84%D9%84%D9%87%20%D8%B9%D9%84%D9%8A%D9%87%20%D9%88%D8%B3%D9%84%D9%8506.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeodt",
+      "name": "موت سليمان",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D9%85%D9%88%D8%AA%20%D8%B3%D9%84%D9%8A%D9%85%D8%A7%D9%86%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%8504.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeodu",
+      "name": "سجن سيدنا يوسف عليه السلام",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D8%B3%D8%AC%D9%86%20%D8%B3%D9%8A%D8%AF%D9%86%D8%A7%20%D9%8A%D9%88%D8%B3%D9%81%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%8507.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeodv",
+      "name": "قصة نوح وا براهيم",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D9%82%D8%B5%D8%A9%20%D9%86%D9%88%D8%AD%20%D9%88%D8%A5%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%B9%D9%84%D9%8A%D9%87%D9%85%D8%A7%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%8502.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeodw",
+      "name": "جانب العبرة والموعظه من قصص الانبياء",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D8%AC%D8%A7%D9%86%D8%A8%20%D8%A7%D9%84%D8%B9%D8%A8%D8%B1%D8%A9%20%D9%88%20%D8%A7%D9%84%D9%85%D9%88%D8%B9%D8%B8%D8%A9%20%D9%85%D9%86%20%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D8%A3%D9%86%D8%A8%D9%8A%D8%A7%D8%A101.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeodx",
+      "name": "مع نبى اللة موسي",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D9%85%D8%B9%20%D9%86%D8%A8%D9%8A%20%D8%A7%D9%84%D9%84%D9%87%20%D9%85%D9%88%D8%B3%D9%89%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%8503.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeody",
+      "name": "مولد المسيح",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D9%85%D9%88%D9%84%D8%AF%20%D8%A7%D9%84%D9%85%D8%B3%D9%8A%D8%AD%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%8505.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeodz",
+      "name": "أيوب",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D8%A3%D9%8A%D9%88%D8%A8%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%201.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe-",
+      "name": "لوط عليه السلام",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D9%84%D9%88%D8%B7%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%8508.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe0",
+      "name": "زكريا عليه السلام",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D8%B2%D9%83%D8%B1%D9%8A%D8%A7%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%8509.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe1",
+      "name": "مع أيوب علية السلام",
+      "radio_url": "https://archive.org/download/StoriesOfTheProphets-mp3/%D9%85%D8%B9%20%D8%A3%D9%8A%D9%88%D8%A8%20%D8%B9%D9%84%D9%8A%D9%87%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%202.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe2",
+      "name": "الزهد في الدنيا عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B2%D9%87%D8%AF%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AF%D9%86%D9%8A%D8%A7%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe3",
+      "name": "السحر عبد المجيد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B3%D8%AD%D8%B1%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe4",
+      "name": "السبع الموبقات عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B3%D8%A8%D8%B9%20%D8%A7%D9%84%D9%85%D9%88%D8%A8%D9%82%D8%A7%D8%AA%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe5",
+      "name": "حول حياة محمد صلي الله عليه وسلم والأنبياء عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%AD%D9%88%D9%84%20%D8%AD%D9%8A%D8%A7%D8%A9%20%D9%85%D8%AD%D9%85%D8%AF%20%D8%B5%D9%84%D9%8A%20%D8%A7%D9%84%D9%84%D9%87%20%D8%B9%D9%84%D9%8A%D9%87%20%D9%88%D8%B3%D9%84%D9%85%20%D9%88%D8%A7%D9%84%D8%A3%D9%86%D8%A8%D9%8A%D8%A7%D8%A1%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe6",
+      "name": "الرحمن على العرش استوى عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%B9%D8%B1%D8%B4%20%D8%A7%D8%B3%D8%AA%D9%88%D9%89%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe7",
+      "name": "الرد على نصارى مصر عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%86%D8%B5%D8%A7%D8%B1%D9%89%20%D9%85%D8%B5%D8%B1%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe8",
+      "name": "السورة التي شيبت الرسول عبد الحميد كشكة",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%B4%D9%8A%D8%A8%D8%AA%20%D8%A7%D9%84%D8%B1%D8%B3%D9%88%D9%84%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoe9",
+      "name": "الزلزال عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B2%D9%84%D8%B2%D8%A7%D9%84%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57sKCRvChEGeoeA",
+      "name": "السيدة خديجة الزوجة الصالحة عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B3%D9%8A%D8%AF%D8%A9%20%D8%AE%D8%AF%D9%8A%D8%AC%D8%A9%20-%20%D8%A7%D9%84%D8%B2%D9%88%D8%AC%D8%A9%20%D8%A7%D9%84%D8%B5%D8%A7%D9%84%D8%AD%D8%A9%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtls",
+      "name": "الرد على نوال السعداوي التي تكلمت عن الرسول عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%86%D9%88%D8%A7%D9%84%20%D8%A7%D9%84%D8%B3%D8%B9%D8%AF%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D9%83%D9%84%D9%85%D8%AA%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%B1%D8%B3%D9%88%D9%84%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtlt",
+      "name": "السيرة النبورة عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%A7%D9%84%D9%86%D8%A8%D9%88%D8%B1%D8%A9%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtlu",
+      "name": "الشرط الخامس لقبول الصلاة عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B4%D8%B1%D8%B7%20%D8%A7%D9%84%D8%AE%D8%A7%D9%85%D8%B3%20%D9%84%D9%82%D8%A8%D9%88%D9%84%20%D8%A7%D9%84%D8%B5%D9%84%D8%A7%D8%A9%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtlv",
+      "name": "الرد على الإنجليز عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtlw",
+      "name": "الرسول عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%B3%D9%88%D9%84%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtlx",
+      "name": "الرد على استاذ جامعة عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D8%A7%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%AC%D8%A7%D9%85%D8%B9%D8%A9%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtly",
+      "name": "الرد على شبهات حول الإسلام عبد الحميد كشك",
+      "radio_url": "https://ia802904.us.archive.org/15/items/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D8%B4%D8%A8%D9%87%D8%A7%D8%AA%20%D8%AD%D9%88%D9%84%20%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtlz",
+      "name": "الرد على شبهات ارسلت للشيخ عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D8%B4%D8%A8%D9%87%D8%A7%D8%AA%20%D8%A7%D8%B1%D8%B3%D9%84%D8%AA%20%D9%84%D9%84%D8%B4%D9%8A%D8%AE%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtm-",
+      "name": "الرد على مقالات دعوى إسلام أهل الكتاب المسلمون والمؤمنون عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D9%82%D8%A7%D9%84%D8%A7%D8%AA%20-%20%D8%AF%D8%B9%D9%88%D9%89%20%D8%A5%D8%B3%D9%84%D8%A7%D9%85%20%D8%A3%D9%87%D9%84%20%D8%A7%D9%84%D9%83%D8%AA%D8%A7%D8%A8%20-%20%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%D9%88%D9%86%20%D9%88%D8%A7%D9%84%D9%85%D8%A4%D9%85%D9%86%D9%88%D9%86%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl57tyhAmHFQWZtm0",
+      "name": "السفر في الإسلام عبد الحميد كشك",
+      "radio_url": "https://archive.org/download/20200407_20200407_0647/%D8%A7%D9%84%D8%B3%D9%81%D8%B1%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%20..%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%20%D9%83%D8%B4%D9%83%20-%20%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA.mp3",
+      "category": "قصص الانبياء"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlC",
+      "name": "يا تارك الصلاة",
+      "radio_url": "https://archive.org/download/kalrashed/78.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlD",
+      "name": "يا أمة محمد",
+      "radio_url": "https://archive.org/download/kalrashed/112.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlE",
+      "name": "إمتحان في القبر",
+      "radio_url": "https://archive.org/download/kalrashed/23.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlF",
+      "name": "قوافل العائدين",
+      "radio_url": "https://archive.org/download/kalrashed/qawafela3aiedeen.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlG",
+      "name": "الصلاة تشتكي",
+      "radio_url": "https://archive.org/download/kalrashed/asalat.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlH",
+      "name": "اقتربت الساعة",
+      "radio_url": "https://archive.org/download/kalrashed/240.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlI",
+      "name": "اضحك مع خالد الراشد",
+      "radio_url": "https://archive.org/download/kalrashed/126.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlJ",
+      "name": "رسالة الى محبي الأغاني",
+      "radio_url": "https://archive.org/download/kalrashed/35.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlK",
+      "name": "حق الزوج",
+      "radio_url": "https://archive.org/download/kalrashed/33.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlL",
+      "name": "لمن كان له قلب",
+      "radio_url": "https://archive.org/download/kalrashed/lemankanlahoqalb.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlM",
+      "name": "الصبر",
+      "radio_url": "https://archive.org/download/kalrashed/183.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlN",
+      "name": "مكائد الشيطان",
+      "radio_url": "https://archive.org/download/kalrashed/145.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlO",
+      "name": "فساد البيوت",
+      "radio_url": "https://archive.org/download/kalrashed/127.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlP",
+      "name": "أحوال الغارقين",
+      "radio_url": "https://archive.org/download/kalrashed/a7walalqareqeen.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlQ",
+      "name": "قبل الندم",
+      "radio_url": "https://archive.org/download/kalrashed/123.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlR",
+      "name": "الغرباء",
+      "radio_url": "https://archive.org/download/kalrashed/118.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlS",
+      "name": "المسيح الدجال",
+      "radio_url": "https://archive.org/download/kalrashed/239.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlT",
+      "name": "متفائلون",
+      "radio_url": "https://archive.org/download/kalrashed/motafaielon.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlU",
+      "name": "زوجوا الشباب",
+      "radio_url": "https://archive.org/download/kalrashed/99.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlV",
+      "name": "لا تجلبي العار",
+      "radio_url": "https://archive.org/download/kalrashed/lataglobialaar.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlW",
+      "name": "وأمر أهلك بالصلاة",
+      "radio_url": "https://archive.org/download/kalrashed/192.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlX",
+      "name": "مكارم الأخلاق",
+      "radio_url": "https://archive.org/download/kalrashed/100.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlY",
+      "name": "مشهد عظيم",
+      "radio_url": "https://archive.org/download/kalrashed/114.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlZ",
+      "name": "يحبهم ويحبونه",
+      "radio_url": "https://archive.org/download/kalrashed/youhbhmwayouhbona.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKl_",
+      "name": "الصاخة",
+      "radio_url": "https://archive.org/download/kalrashed/98.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKla",
+      "name": "اليهود الخونة",
+      "radio_url": "https://archive.org/download/kalrashed/189.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlb",
+      "name": "طول الأمل ضيع فلسطين",
+      "radio_url": "https://archive.org/download/kalrashed/205.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKlc",
+      "name": "من حال إلى حال",
+      "radio_url": "https://archive.org/download/kalrashed/62.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKld",
+      "name": "فاعتبروا يا أولى الأبصار",
+      "radio_url": "https://archive.org/download/kalrashed/fa3taberoo.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIl9lGZI2BTPlPaKle",
+      "name": "نعم الله علينا",
+      "radio_url": "https://archive.org/download/kalrashed/66.mp3",
+      "category": "خالد الراشد"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9io",
+      "name": "خالد القحطاني",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Khalid_Alkahtany.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9ip",
+      "name": "إدريس أبكر",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Edres_abkr_ruqya.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9iq",
+      "name": "ناصر القطامي",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Roqyah_Shar3eyah_Naser_katamy.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9ir",
+      "name": "ياسر سلامة",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Yasser_salamah.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9is",
+      "name": "سعد الغامدي",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Sadd_ghamdy.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9it",
+      "name": "ياسر الدوسري",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Yasser_dosry.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9iu",
+      "name": "راشد العفاسي",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_mshary.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9iv",
+      "name": "فارس عباد",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Faris_Abbad.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaIlMpvZ7dfb_P5C9iw",
+      "name": "أحمد بن علي العجمي",
+      "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Ahmed_Al-Ajami.mp3",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaRHeBePb15vZ8CGBlS",
+      "name": "اذاعة الأولى",
+      "radio_url": "https://webradio.tda.dz/Chaine1_64K.mp3",
+      "category": "راديو محلي"
+    },
+    {
+      "id": "-OaRIT60fTqr26VhLZpU",
+      "name": "الثانية الجزائرية",
+      "radio_url": "https://webradio.tda.dz/Internationale_64K.mp3",
+      "category": "راديو محلي"
+    },
+    {
+      "id": "-OaRJ4CuF2TLTQqqmiiv",
+      "name": "القرآن الكريم",
+      "radio_url": "https://webradio.tda.dz/Coran_64K.mp3",
+      "category": "راديو محلي"
+    },
+    {
+      "id": "-OaRKjjrMTkVzJNXSF3J",
+      "name": "الثقافية",
+      "radio_url": "https://webradio.tda.dz/Culture_64K.mp3",
+      "category": "راديو محلي"
+    },
+    {
+      "id": "-OaRc-1sCqKIRRCBapxP",
+      "name": "راديو البهجة",
+      "radio_url": "https://webradio.tda.dz/ElBahdja_64K.mp3",
+      "category": "راديو محلي"
+    },
+    {
+      "id": "-OaSrKH8DGy_Dh3Jn0w1",
+      "name": "اذاعة عين الدفلى",
+      "radio_url": "https://webradio.tda.dz/AinDefla_64K.mp3",
+      "category": "راديو محلي"
+    },
+    {
+      "id": "-OaeLopWHqRgLO4NvLz2",
+      "name": "إذاعة أحمد الطرابلسي",
+      "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kE",
+      "name": "إذاعة أحمد خضر الطرابلسي",
+      "radio_url": "https://Qurango.net/radio/ahmad_khader_altarabulsi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kF",
+      "name": "إذاعة أحمد عامر",
+      "radio_url": "https://Qurango.net/radio/ahmed_amer",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kG",
+      "name": "إذاعة ابراهيم الدوسري",
+      "radio_url": "https://Qurango.net/radio/ibrahim_aldosari",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kH",
+      "name": " إذاعة الدوكالي محمد العالم",
+      "radio_url": "https://Qurango.net/radio/addokali_mohammad_alalim",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kI",
+      "name": "إذاعة الفاتح محمد الزبير",
+      "radio_url": "https://Qurango.net/radio/alfateh_alzubair",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kJ",
+      "name": "إذاعة جمعان العصيمي",
+      "radio_url": "https://Qurango.net/radio/jamaan_alosaimi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kK",
+      "name": "إذاعة حاتم فريد الواعر",
+      "radio_url": "https://Qurango.net/radio/hatem_fareed_alwaer",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kL",
+      "name": "إذاعة خالد المهنا",
+      "radio_url": "https://Qurango.net/radio/khalid_almohana",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopXJIaHymeU48kM",
+      "name": "إذاعة طارق عبدالغني دعوب",
+      "radio_url": "https://Qurango.net/radio/tareq_abdulgani_daawob",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WQ",
+      "name": "إذاعة عادل الكلباني",
+      "radio_url": "https://Qurango.net/radio/adel_alkhalbany",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WR",
+      "name": "إذاعة عبدالرحمن الماجد",
+      "radio_url": "https://Qurango.net/radio/abdulrahman_almajed",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WS",
+      "name": "إذاعة عبدالله الكندري",
+      "radio_url": "https://Qurango.net/radio/abdullah_alkandari",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WT",
+      "name": "إذاعة علي جابر",
+      "radio_url": "https://Qurango.net/radio/ali_jaber",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WU",
+      "name": "إذاعة علي حجاج السويسي",
+      "radio_url": "https://Qurango.net/radio/ali_hajjaj_alsouasi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WV",
+      "name": "إذاعة عماد زهير حافظ",
+      "radio_url": "https://Qurango.net/radio/emad_hafez",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WW",
+      "name": "إذاعة عمر القزابري",
+      "radio_url": "https://Qurango.net/radio/omar_alqazabri",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WX",
+      "name": "إذاعة فارس عباد",
+      "radio_url": "https://Qurango.net/radio/fares_abbad",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WY",
+      "name": "إذاعة ماهر المعيقلي",
+      "radio_url": "https://Qurango.net/radio/maher_al_meaqli",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2WZ",
+      "name": "إذاعة ماهر شخاشيرو",
+      "radio_url": "https://Qurango.net/radio/maher_shakhashero",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2W_",
+      "name": "إذاعة محمد أيوب",
+      "radio_url": "https://Qurango.net/radio/mohammed_ayyub",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wa",
+      "name": "إذاعة محمد الطبلاوي",
+      "radio_url": "https://Qurango.net/radio/mohammad_altablaway",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wb",
+      "name": "إذاعة محمد اللحيدان",
+      "radio_url": "https://Qurango.net/radio/mohammed_allohaidan",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wc",
+      "name": "إذاعة محمد جبريل",
+      "radio_url": "https://Qurango.net/radio/mohammed_jibreel",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wd",
+      "name": "إذاعة محمد رشاد الشريف",
+      "radio_url": "https://Qurango.net/radio/mohammad_rashad_alshareef",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2We",
+      "name": "إذاعة محمد صالح عالم شاه",
+      "radio_url": "https://Qurango.net/radio/mohammad_saleh_alim_shah",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wf",
+      "name": "إذاعة محمد صديق المنشاوي",
+      "radio_url": "https://Qurango.net/radio/mohammed_siddiq_alminshawi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wg",
+      "name": "إذاعة محمد عبدالحكيم سعيد العبدالله",
+      "radio_url": "https://Qurango.net/radio/mohammad_alabdullah_albizi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wh",
+      "name": "إذاعة محمد عبدالكريم",
+      "radio_url": "https://Qurango.net/radio/mohammad_abdullkarem",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wi",
+      "name": "إذاعة محمود الرفاعي",
+      "radio_url": "https://Qurango.net/radio/mahmood_al_rifai",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wj",
+      "name": "إذاعة محمود الشيمي",
+      "radio_url": "https://Qurango.net/radio/mahmood_alsheimy",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopYrDy-lY1CP2Wk",
+      "name": " إذاعة محمود خليل الحصري",
+      "radio_url": "https://Qurango.net/radio/mahmoud_khalil_alhussary",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owa",
+      "name": "إذاعة محمود علي البنا",
+      "radio_url": "https://Qurango.net/radio/mahmoud_ali__albanna",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owb",
+      "name": "إذاعة مشاري العفاسي",
+      "radio_url": "https://Qurango.net/radio/mishary_alafasi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owc",
+      "name": "إذاعة مصطفى إسماعيل",
+      "radio_url": "https://Qurango.net/radio/mustafa_ismail",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owd",
+      "name": " إذاعة مصطفى اللاهوني",
+      "radio_url": "https://Qurango.net/radio/mustafa_allahoni",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owe",
+      "name": "إذاعة مصطفى رعد العزاوي",
+      "radio_url": "https://Qurango.net/radio/mustafa_raad_alazawy",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owf",
+      "name": "إذاعة معيض الحارثي",
+      "radio_url": "https://Qurango.net/radio/moeedh_alharthi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owg",
+      "name": "إذاعة مفتاح السلطني",
+      "radio_url": "https://Qurango.net/radio/muftah_alsaltany_aldori_an_abi_amr ",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owh",
+      "name": "إذاعة موسى بلال",
+      "radio_url": "https://Qurango.net/radio/mousa_bilal",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owi",
+      "name": "إذاعة ناصر القطامي",
+      "radio_url": "https://Qurango.net/radio/nasser_alqatami",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owj",
+      "name": "إذاعة نبيل الرفاعي",
+      "radio_url": "https://Qurango.net/radio/nabil_al_rifay",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owk",
+      "name": "إذاعة نعمة الحسان",
+      "radio_url": "https://Qurango.net/radio/neamah_alhassan",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owl",
+      "name": "إذاعة هاني الرفاعي",
+      "radio_url": "https://Qurango.net/radio/hani_arrifai",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owm",
+      "name": "إذاعة وليد النائحي",
+      "radio_url": "https://Qurango.net/radio/waleed_alnaehi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2own",
+      "name": "إذاعة ياسر الدوسري",
+      "radio_url": "https://Qurango.net/radio/yasser_aldosari",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owo",
+      "name": "إذاعة ياسر القرشي",
+      "radio_url": "https://Qurango.net/radio/yasser_alqurashi",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owp",
+      "name": "إذاعة ياسر المزروعي",
+      "radio_url": "https://Qurango.net/radio/yasser_almazroyee",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owq",
+      "name": "إذاعة يحيى حوا",
+      "radio_url": "https://Qurango.net/radio/yahya_hawwa",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owr",
+      "name": "إذاعة يوسف الشويعي",
+      "radio_url": "https://Qurango.net/radio/yousef_alshoaey",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2ows",
+      "name": "إذاعة يوسف بن نوح أحمد",
+      "radio_url": "https://Qurango.net/radio/yousef_bin_noah_ahmad",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owt",
+      "name": "أحمد الحواشي",
+      "radio_url": "http://live.mp3quran.net:9928/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owu",
+      "name": "أحمد الطرابلسي",
+      "radio_url": "http://live.mp3quran.net:9926/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owv",
+      "name": "أحمد بن علي العجمي",
+      "radio_url": "http://live.mp3quran.net:8008/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2oww",
+      "name": "أحمد خضر الطرابلسي",
+      "radio_url": "http://live.mp3quran.net:9924/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owx",
+      "name": "أحمد ديبان",
+      "radio_url": "http://live.mp3quran.net:8024/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owy",
+      "name": "أحمد صابر",
+      "radio_url": "http://live.mp3quran.net:9922/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2owz",
+      "name": "أحمد عامر",
+      "radio_url": "http://live.mp3quran.net:9920/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2ox-",
+      "name": "أحمد نعينع",
+      "radio_url": "http://live.mp3quran.net:9904/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2ox0",
+      "name": "أكرم العلاقمي",
+      "radio_url": "http://live.mp3quran.net:9918/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2ox1",
+      "name": "إبراهيم الأخضر",
+      "radio_url": "http://live.mp3quran.net:9946/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopZOfmLFH8a2ox2",
+      "name": "إدريس أبكر",
+      "radio_url": "http://live.mp3quran.net:9968/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj1",
+      "name": "ابراهيم الدوسري",
+      "radio_url": "http://live.mp3quran.net:9902/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj2",
+      "name": "الدوكالي محمد العالم",
+      "radio_url": "http://live.mp3quran.net:9916/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj3",
+      "name": "الزين محمد أحمد",
+      "radio_url": "http://live.mp3quran.net:9914/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj4",
+      "name": "العيون الكوشي",
+      "radio_url": "http://live.mp3quran.net:9912/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj5",
+      "name": "الفاتح محمد الزبير",
+      "radio_url": "http://live.mp3quran.net:9910/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj6",
+      "name": "الفتاوى",
+      "radio_url": "http://live.mp3quran.net:8014/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj7",
+      "name": "القارئ ياسين",
+      "radio_url": "http://live.mp3quran.net:9908/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj8",
+      "name": "بندر بليله",
+      "radio_url": "https://Qurango.net/radio/bandar_balilah",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqj9",
+      "name": "توفيق الصايغ",
+      "radio_url": "http://live.mp3quran.net:9906/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjA",
+      "name": "جمال شاكر عبدالله",
+      "radio_url": "http://live.mp3quran.net:9900/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjB",
+      "name": "جمعان العصيمي",
+      "radio_url": "http://live.mp3quran.net:9950/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjC",
+      "name": "حاتم فريد الواعر",
+      "radio_url": "http://live.mp3quran.net:9898/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjD",
+      "name": "خالد الجليل",
+      "radio_url": "http://live.mp3quran.net:9708/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjE",
+      "name": "خالد القحطاني",
+      "radio_url": "http://live.mp3quran.net:9970/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjF",
+      "name": "خالد المهنا",
+      "radio_url": "http://live.mp3quran.net:9896/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjG",
+      "name": "خالد عبدالكافي",
+      "radio_url": "http://live.mp3quran.net:9894/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjH",
+      "name": "خليفة الطنيجي",
+      "radio_url": "http://live.mp3quran.net:9892/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjI",
+      "name": "زكي داغستاني",
+      "radio_url": "http://live.mp3quran.net:9890/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjJ",
+      "name": "سعد الغامدي",
+      "radio_url": "http://live.mp3quran.net:8004/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjK",
+      "name": "سعود الشريم",
+      "radio_url": "http://live.mp3quran.net:9986/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjL",
+      "name": "سهل ياسين",
+      "radio_url": "http://live.mp3quran.net:9888/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjM",
+      "name": "سيد رمضان",
+      "radio_url": "http://live.mp3quran.net:9886/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjN",
+      "name": "شيخ أبو بكر الشاطري",
+      "radio_url": "http://live.mp3quran.net:9966/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjO",
+      "name": "شيرزاد عبدالرحمن طاهر",
+      "radio_url": "http://live.mp3quran.net:9884/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjP",
+      "name": "صابر عبدالحكم",
+      "radio_url": "http://live.mp3quran.net:9952/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjQ",
+      "name": "صالح الهبدان",
+      "radio_url": "http://live.mp3quran.net:8026/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjR",
+      "name": "صلاح البدير",
+      "radio_url": "http://live.mp3quran.net:9882/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjS",
+      "name": "صلاح الهاشم",
+      "radio_url": "http://live.mp3quran.net:9880/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjT",
+      "name": "صلاح بو خاطر",
+      "radio_url": "http://live.mp3quran.net:9878/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjU",
+      "name": "طارق عبدالغني دعوب",
+      "radio_url": "http://live.mp3quran.net:9876/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjV",
+      "name": "عادل ريان",
+      "radio_url": "http://live.mp3quran.net:9872/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjW",
+      "name": "عبدالبارئ الثبيتي",
+      "radio_url": "http://live.mp3quran.net:9870/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjX",
+      "name": "عبدالبارئ محمد",
+      "radio_url": "http://live.mp3quran.net:9868/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLop__uTqvIJ2zqjY",
+      "name": "عبدالباسط عبدالصمد",
+      "radio_url": "http://live.mp3quran.net:9980/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpK",
+      "name": "عبدالرحمن السديس",
+      "radio_url": "http://live.mp3quran.net:9988/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpL",
+      "name": "عبدالرحمن الماجد",
+      "radio_url": "http://live.mp3quran.net:9726/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpM",
+      "name": "عبدالرشيد صوفي",
+      "radio_url": "http://live.mp3quran.net:9866/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpN",
+      "name": "عبدالعزيز الأحمد",
+      "radio_url": "http://live.mp3quran.net:9862/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpO",
+      "name": "عبدالله الخلف",
+      "radio_url": "http://live.mp3quran.net:9704/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpP",
+      "name": "عبدالله الكندري",
+      "radio_url": "http://live.mp3quran.net:9860/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpQ",
+      "name": "عبدالله المطرود",
+      "radio_url": "http://live.mp3quran.net:9858/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpR",
+      "name": "عبدالله الموسى",
+      "radio_url": "http://live.mp3quran.net:9706/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpS",
+      "name": "عبدالله بصفر",
+      "radio_url": "http://live.mp3quran.net:9954/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpT",
+      "name": "عبدالله خياط",
+      "radio_url": "http://live.mp3quran.net:9948/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpU",
+      "name": "عبدالله عواد الجهني",
+      "radio_url": "http://live.mp3quran.net:9944/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpV",
+      "name": "عبدالمحسن الحارثي",
+      "radio_url": "http://live.mp3quran.net:9856/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpW",
+      "name": "عبدالمحسن العبيكان",
+      "radio_url": "http://live.mp3quran.net:9854/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpX",
+      "name": "عبدالمحسن القاسم",
+      "radio_url": "http://live.mp3quran.net:9852/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpY",
+      "name": "عبدالهادي أحمد كناكري",
+      "radio_url": "http://live.mp3quran.net:9850/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpZ",
+      "name": "عبدالودود حنيف",
+      "radio_url": "http://live.mp3quran.net:9848/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHp_",
+      "name": "علي الحذيفي",
+      "radio_url": "http://live.mp3quran.net:9844/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpa",
+      "name": "علي الحذيفي",
+      "radio_url": "http://live.mp3quran.net:9846/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpb",
+      "name": "علي جابر",
+      "radio_url": "http://live.mp3quran.net:9964/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpc",
+      "name": "علي حجاج السويسي",
+      "radio_url": "http://live.mp3quran.net:9842/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpd",
+      "name": "عماد زهير حافظ",
+      "radio_url": "http://live.mp3quran.net:9840/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpe",
+      "name": "عمر القزابري",
+      "radio_url": "http://live.mp3quran.net:9838/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpf",
+      "name": "فارس عباد",
+      "radio_url": "http://live.mp3quran.net:9972/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpg",
+      "name": "ماجد الزامل",
+      "radio_url": "http://live.mp3quran.net:8022/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHph",
+      "name": "ماهر المعيقلي",
+      "radio_url": "http://live.mp3quran.net:8002/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpi",
+      "name": "ماهر شخاشيرو",
+      "radio_url": "http://live.mp3quran.net:9836/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpj",
+      "name": "محمد أيوب",
+      "radio_url": "http://live.mp3quran.net:9960/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpk",
+      "name": "محمد أيوب - قراءة متميزة--",
+      "radio_url": "http://live.mp3quran.net:9700/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpl",
+      "name": "محمد الطبلاوي",
+      "radio_url": "http://live.mp3quran.net:9834/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpm",
+      "name": "محمد اللحيدان",
+      "radio_url": "http://live.mp3quran.net:9832/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpn",
+      "name": "محمد جبريل",
+      "radio_url": "http://live.mp3quran.net:9962/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpo",
+      "name": "محمد رشاد الشريف",
+      "radio_url": "http://live.mp3quran.net:9830/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpp",
+      "name": "محمد صالح عالم شاه",
+      "radio_url": "http://live.mp3quran.net:9828/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpq",
+      "name": "محمد صديق المنشاوي",
+      "radio_url": "http://live.mp3quran.net:9826/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpr",
+      "name": "محمد صديق المنشاوي",
+      "radio_url": "http://live.mp3quran.net:9978/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHps",
+      "name": "محمد عبدالحكيم سعيد العبدالله",
+      "radio_url": "http://live.mp3quran.net:9816/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpt",
+      "name": "محمد عبدالحكيم سعيد العبدالله",
+      "radio_url": "http://live.mp3quran.net:9814/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpu",
+      "name": "محمد عبدالكريم",
+      "radio_url": "http://live.mp3quran.net:9822/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpv",
+      "name": "محمد عبدالكريم",
+      "radio_url": "http://live.mp3quran.net:9824/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpw",
+      "name": "محمد عثمان خان ( من الهند )",
+      "radio_url": "http://live.mp3quran.net:9820/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpx",
+      "name": "محمود الرفاعي",
+      "radio_url": "http://live.mp3quran.net:9818/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpy",
+      "name": "محمود الشيمي",
+      "radio_url": "http://live.mp3quran.net:9812/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopae5LAswicFHpz",
+      "name": "محمود خليل الحصري",
+      "radio_url": "http://live.mp3quran.net:9806/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqK",
+      "name": "محمود خليل الحصري",
+      "radio_url": "http://live.mp3quran.net:9804/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqL",
+      "name": "محمود خليل الحصري",
+      "radio_url": "http://live.mp3quran.net:9958/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqM",
+      "name": "محمود علي البنا",
+      "radio_url": "http://live.mp3quran.net:9808/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqN",
+      "name": "محمود علي البنا",
+      "radio_url": "http://live.mp3quran.net:9810/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqO",
+      "name": "مشاري العفاسي",
+      "radio_url": "http://live.mp3quran.net:8010/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqP",
+      "name": "مصطفى إسماعيل",
+      "radio_url": "http://live.mp3quran.net:9800/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqQ",
+      "name": "مصطفى اللاهوني",
+      "radio_url": "http://live.mp3quran.net:9798/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqR",
+      "name": "مصطفى رعد العزاوي",
+      "radio_url": "http://live.mp3quran.net:9796/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqS",
+      "name": "معيض الحارثي",
+      "radio_url": "http://live.mp3quran.net:9802/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqT",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9794/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqU",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9788/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqV",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9790/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqW",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9792/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqX",
+      "name": "موسى بلال",
+      "radio_url": "http://live.mp3quran.net:9786/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqY",
+      "name": "ناصر العصفور",
+      "radio_url": "http://live.mp3quran.net:8020/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6DqZ",
+      "name": "ناصر القطامي",
+      "radio_url": "http://live.mp3quran.net:9994/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dq_",
+      "name": "ناصر الماجد",
+      "radio_url": "http://live.mp3quran.net:9712/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqa",
+      "name": "نبيل الرفاعي",
+      "radio_url": "http://live.mp3quran.net:9784/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqb",
+      "name": "نعمة الحسان",
+      "radio_url": "http://live.mp3quran.net:9782/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqc",
+      "name": "هاني الرفاعي",
+      "radio_url": "http://live.mp3quran.net:9780/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqd",
+      "name": "هيثم الجدعاني",
+      "radio_url": "http://live.mp3quran.net:9714/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqe",
+      "name": "وليد النائحي",
+      "radio_url": "http://live.mp3quran.net:9778/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqf",
+      "name": "ياسر الدوسري",
+      "radio_url": "http://live.mp3quran.net:9984/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqg",
+      "name": "ياسر القرشي",
+      "radio_url": "http://live.mp3quran.net:9776/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqh",
+      "name": "ياسر المزروعي ",
+      "radio_url": "http://live.mp3quran.net:9774/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqi",
+      "name": "يحيى حوا",
+      "radio_url": "http://live.mp3quran.net:9772/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqj",
+      "name": "يوسف بن نوح أحمد",
+      "radio_url": "http://live.mp3quran.net:9768/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqk",
+      "name": "يوسف الشويعي",
+      "radio_url": "http://live.mp3quran.net:9770/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dql",
+      "name": "صلاح البدير",
+      "radio_url": "http://live.mp3quran.net:9882/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqm",
+      "name": "ترتيلات قصيرة - مثال",
+      "radio_url": "http://live.mp3quran.net:9702/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLopb-rghV_2h6Dqn",
+      "name": "المختصر في تفسير القرآن الكريم - مثال",
+      "radio_url": "http://live.mp3quran.net:9698/;",
+      "category": "الرقية الشرعية"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn55",
+      "name": "إذاعة أحمد الطرابلسي",
+      "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn56",
+      "name": "إذاعة أحمد خضر الطرابلسي",
+      "radio_url": "https://Qurango.net/radio/ahmad_khader_altarabulsi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn57",
+      "name": "إذاعة أحمد عامر",
+      "radio_url": "https://Qurango.net/radio/ahmed_amer",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn58",
+      "name": "إذاعة ابراهيم الدوسري",
+      "radio_url": "https://Qurango.net/radio/ibrahim_aldosari",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn59",
+      "name": " إذاعة الدوكالي محمد العالم",
+      "radio_url": "https://Qurango.net/radio/addokali_mohammad_alalim",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5A",
+      "name": "إذاعة الفاتح محمد الزبير",
+      "radio_url": "https://Qurango.net/radio/alfateh_alzubair",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5B",
+      "name": "إذاعة جمعان العصيمي",
+      "radio_url": "https://Qurango.net/radio/jamaan_alosaimi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5C",
+      "name": "إذاعة حاتم فريد الواعر",
+      "radio_url": "https://Qurango.net/radio/hatem_fareed_alwaer",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5D",
+      "name": "إذاعة خالد المهنا",
+      "radio_url": "https://Qurango.net/radio/khalid_almohana",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5E",
+      "name": "إذاعة طارق عبدالغني دعوب",
+      "radio_url": "https://Qurango.net/radio/tareq_abdulgani_daawob",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5F",
+      "name": "إذاعة عادل الكلباني",
+      "radio_url": "https://Qurango.net/radio/adel_alkhalbany",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5G",
+      "name": "إذاعة عبدالرحمن الماجد",
+      "radio_url": "https://Qurango.net/radio/abdulrahman_almajed",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5H",
+      "name": "إذاعة عبدالله الكندري",
+      "radio_url": "https://Qurango.net/radio/abdullah_alkandari",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5I",
+      "name": "إذاعة علي جابر",
+      "radio_url": "https://Qurango.net/radio/ali_jaber",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5J",
+      "name": "إذاعة علي حجاج السويسي",
+      "radio_url": "https://Qurango.net/radio/ali_hajjaj_alsouasi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5K",
+      "name": "إذاعة عماد زهير حافظ",
+      "radio_url": "https://Qurango.net/radio/emad_hafez",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5L",
+      "name": "إذاعة عمر القزابري",
+      "radio_url": "https://Qurango.net/radio/omar_alqazabri",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5M",
+      "name": "إذاعة فارس عباد",
+      "radio_url": "https://Qurango.net/radio/fares_abbad",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5N",
+      "name": "إذاعة ماهر المعيقلي",
+      "radio_url": "https://Qurango.net/radio/maher_al_meaqli",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5O",
+      "name": "إذاعة ماهر شخاشيرو",
+      "radio_url": "https://Qurango.net/radio/maher_shakhashero",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5P",
+      "name": "إذاعة محمد أيوب",
+      "radio_url": "https://Qurango.net/radio/mohammed_ayyub",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5Q",
+      "name": "إذاعة محمد الطبلاوي",
+      "radio_url": "https://Qurango.net/radio/mohammad_altablaway",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5R",
+      "name": "إذاعة محمد اللحيدان",
+      "radio_url": "https://Qurango.net/radio/mohammed_allohaidan",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5S",
+      "name": "إذاعة محمد جبريل",
+      "radio_url": "https://Qurango.net/radio/mohammed_jibreel",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5T",
+      "name": "إذاعة محمد رشاد الشريف",
+      "radio_url": "https://Qurango.net/radio/mohammad_rashad_alshareef",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5U",
+      "name": "إذاعة محمد صالح عالم شاه",
+      "radio_url": "https://Qurango.net/radio/mohammad_saleh_alim_shah",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5V",
+      "name": "إذاعة محمد صديق المنشاوي",
+      "radio_url": "https://Qurango.net/radio/mohammed_siddiq_alminshawi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5W",
+      "name": "إذاعة محمد عبدالحكيم سعيد العبدالله",
+      "radio_url": "https://Qurango.net/radio/mohammad_alabdullah_albizi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5X",
+      "name": "إذاعة محمد عبدالكريم",
+      "radio_url": "https://Qurango.net/radio/mohammad_abdullkarem",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5Y",
+      "name": "إذاعة محمود الرفاعي",
+      "radio_url": "https://Qurango.net/radio/mahmood_al_rifai",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-cEAb3cLOBLn5Z",
+      "name": "إذاعة محمود الشيمي",
+      "radio_url": "https://Qurango.net/radio/mahmood_alsheimy",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNm",
+      "name": " إذاعة محمود خليل الحصري",
+      "radio_url": "https://Qurango.net/radio/mahmoud_khalil_alhussary",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNn",
+      "name": "إذاعة محمود علي البنا",
+      "radio_url": "https://Qurango.net/radio/mahmoud_ali__albanna",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNo",
+      "name": "إذاعة مشاري العفاسي",
+      "radio_url": "https://Qurango.net/radio/mishary_alafasi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNp",
+      "name": "إذاعة مصطفى إسماعيل",
+      "radio_url": "https://Qurango.net/radio/mustafa_ismail",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNq",
+      "name": " إذاعة مصطفى اللاهوني",
+      "radio_url": "https://Qurango.net/radio/mustafa_allahoni",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNr",
+      "name": "إذاعة مصطفى رعد العزاوي",
+      "radio_url": "https://Qurango.net/radio/mustafa_raad_alazawy",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNs",
+      "name": "إذاعة معيض الحارثي",
+      "radio_url": "https://Qurango.net/radio/moeedh_alharthi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNt",
+      "name": "إذاعة مفتاح السلطني",
+      "radio_url": "https://Qurango.net/radio/muftah_alsaltany_aldori_an_abi_amr ",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNu",
+      "name": "إذاعة موسى بلال",
+      "radio_url": "https://Qurango.net/radio/mousa_bilal",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNv",
+      "name": "إذاعة ناصر القطامي",
+      "radio_url": "https://Qurango.net/radio/nasser_alqatami",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNw",
+      "name": "إذاعة نبيل الرفاعي",
+      "radio_url": "https://Qurango.net/radio/nabil_al_rifay",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNx",
+      "name": "إذاعة نعمة الحسان",
+      "radio_url": "https://Qurango.net/radio/neamah_alhassan",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNy",
+      "name": "إذاعة هاني الرفاعي",
+      "radio_url": "https://Qurango.net/radio/hani_arrifai",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNNz",
+      "name": "إذاعة وليد النائحي",
+      "radio_url": "https://Qurango.net/radio/waleed_alnaehi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO-",
+      "name": "إذاعة ياسر الدوسري",
+      "radio_url": "https://Qurango.net/radio/yasser_aldosari",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO0",
+      "name": "إذاعة ياسر القرشي",
+      "radio_url": "https://Qurango.net/radio/yasser_alqurashi",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO1",
+      "name": "إذاعة ياسر المزروعي",
+      "radio_url": "https://Qurango.net/radio/yasser_almazroyee",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO2",
+      "name": "إذاعة يحيى حوا",
+      "radio_url": "https://Qurango.net/radio/yahya_hawwa",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO3",
+      "name": "إذاعة يوسف الشويعي",
+      "radio_url": "https://Qurango.net/radio/yousef_alshoaey",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO4",
+      "name": "إذاعة يوسف بن نوح أحمد",
+      "radio_url": "https://Qurango.net/radio/yousef_bin_noah_ahmad",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO5",
+      "name": "أحمد الحواشي",
+      "radio_url": "http://live.mp3quran.net:9928/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO6",
+      "name": "أحمد الطرابلسي",
+      "radio_url": "http://live.mp3quran.net:9926/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO7",
+      "name": "أحمد بن علي العجمي",
+      "radio_url": "http://live.mp3quran.net:8008/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO8",
+      "name": "أحمد خضر الطرابلسي",
+      "radio_url": "http://live.mp3quran.net:9924/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNO9",
+      "name": "أحمد ديبان",
+      "radio_url": "http://live.mp3quran.net:8024/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOA",
+      "name": "أحمد صابر",
+      "radio_url": "http://live.mp3quran.net:9922/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOB",
+      "name": "أحمد عامر",
+      "radio_url": "http://live.mp3quran.net:9920/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOC",
+      "name": "أحمد نعينع",
+      "radio_url": "http://live.mp3quran.net:9904/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOD",
+      "name": "أكرم العلاقمي",
+      "radio_url": "http://live.mp3quran.net:9918/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOE",
+      "name": "إبراهيم الأخضر",
+      "radio_url": "http://live.mp3quran.net:9946/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOF",
+      "name": "إدريس أبكر",
+      "radio_url": "http://live.mp3quran.net:9968/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOG",
+      "name": "ابراهيم الدوسري",
+      "radio_url": "http://live.mp3quran.net:9902/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOH",
+      "name": "الدوكالي محمد العالم",
+      "radio_url": "http://live.mp3quran.net:9916/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOI",
+      "name": "الزين محمد أحمد",
+      "radio_url": "http://live.mp3quran.net:9914/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOJ",
+      "name": "العيون الكوشي",
+      "radio_url": "http://live.mp3quran.net:9912/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOK",
+      "name": "الفاتح محمد الزبير",
+      "radio_url": "http://live.mp3quran.net:9910/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOL",
+      "name": "الفتاوى",
+      "radio_url": "http://live.mp3quran.net:8014/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOM",
+      "name": "القارئ ياسين",
+      "radio_url": "http://live.mp3quran.net:9908/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNON",
+      "name": "بندر بليله",
+      "radio_url": "https://Qurango.net/radio/bandar_balilah",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOO",
+      "name": "توفيق الصايغ",
+      "radio_url": "http://live.mp3quran.net:9906/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOP",
+      "name": "جمال شاكر عبدالله",
+      "radio_url": "http://live.mp3quran.net:9900/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOQ",
+      "name": "جمعان العصيمي",
+      "radio_url": "http://live.mp3quran.net:9950/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOR",
+      "name": "حاتم فريد الواعر",
+      "radio_url": "http://live.mp3quran.net:9898/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOS",
+      "name": "خالد الجليل",
+      "radio_url": "http://live.mp3quran.net:9708/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOT",
+      "name": "خالد القحطاني",
+      "radio_url": "http://live.mp3quran.net:9970/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOU",
+      "name": "خالد المهنا",
+      "radio_url": "http://live.mp3quran.net:9896/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOV",
+      "name": "خالد عبدالكافي",
+      "radio_url": "http://live.mp3quran.net:9894/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOW",
+      "name": "خليفة الطنيجي",
+      "radio_url": "http://live.mp3quran.net:9892/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOX",
+      "name": "زكي داغستاني",
+      "radio_url": "http://live.mp3quran.net:9890/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOY",
+      "name": "سعد الغامدي",
+      "radio_url": "http://live.mp3quran.net:8004/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-dJ4Dkh-LzYNOZ",
+      "name": "سعود الشريم",
+      "radio_url": "http://live.mp3quran.net:9986/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mB",
+      "name": "سهل ياسين",
+      "radio_url": "http://live.mp3quran.net:9888/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mC",
+      "name": "سيد رمضان",
+      "radio_url": "http://live.mp3quran.net:9886/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mD",
+      "name": "شيخ أبو بكر الشاطري",
+      "radio_url": "http://live.mp3quran.net:9966/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mE",
+      "name": "شيرزاد عبدالرحمن طاهر",
+      "radio_url": "http://live.mp3quran.net:9884/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mF",
+      "name": "صابر عبدالحكم",
+      "radio_url": "http://live.mp3quran.net:9952/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mG",
+      "name": "صالح الهبدان",
+      "radio_url": "http://live.mp3quran.net:8026/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mH",
+      "name": "صلاح البدير",
+      "radio_url": "http://live.mp3quran.net:9882/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mI",
+      "name": "صلاح الهاشم",
+      "radio_url": "http://live.mp3quran.net:9880/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mJ",
+      "name": "صلاح بو خاطر",
+      "radio_url": "http://live.mp3quran.net:9878/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mK",
+      "name": "طارق عبدالغني دعوب",
+      "radio_url": "http://live.mp3quran.net:9876/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mL",
+      "name": "عادل ريان",
+      "radio_url": "http://live.mp3quran.net:9872/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mM",
+      "name": "عبدالبارئ الثبيتي",
+      "radio_url": "http://live.mp3quran.net:9870/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mN",
+      "name": "عبدالبارئ محمد",
+      "radio_url": "http://live.mp3quran.net:9868/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mO",
+      "name": "عبدالباسط عبدالصمد",
+      "radio_url": "http://live.mp3quran.net:9980/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mP",
+      "name": "عبدالرحمن السديس",
+      "radio_url": "http://live.mp3quran.net:9988/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mQ",
+      "name": "عبدالرحمن الماجد",
+      "radio_url": "http://live.mp3quran.net:9726/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mR",
+      "name": "عبدالرشيد صوفي",
+      "radio_url": "http://live.mp3quran.net:9866/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mS",
+      "name": "عبدالعزيز الأحمد",
+      "radio_url": "http://live.mp3quran.net:9862/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mT",
+      "name": "عبدالله الخلف",
+      "radio_url": "http://live.mp3quran.net:9704/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mU",
+      "name": "عبدالله الكندري",
+      "radio_url": "http://live.mp3quran.net:9860/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mV",
+      "name": "عبدالله المطرود",
+      "radio_url": "http://live.mp3quran.net:9858/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mW",
+      "name": "عبدالله الموسى",
+      "radio_url": "http://live.mp3quran.net:9706/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mX",
+      "name": "عبدالله بصفر",
+      "radio_url": "http://live.mp3quran.net:9954/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mY",
+      "name": "عبدالله خياط",
+      "radio_url": "http://live.mp3quran.net:9948/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mZ",
+      "name": "عبدالله عواد الجهني",
+      "radio_url": "http://live.mp3quran.net:9944/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635m_",
+      "name": "عبدالمحسن الحارثي",
+      "radio_url": "http://live.mp3quran.net:9856/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635ma",
+      "name": "عبدالمحسن العبيكان",
+      "radio_url": "http://live.mp3quran.net:9854/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mb",
+      "name": "عبدالمحسن القاسم",
+      "radio_url": "http://live.mp3quran.net:9852/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mc",
+      "name": "عبدالهادي أحمد كناكري",
+      "radio_url": "http://live.mp3quran.net:9850/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635md",
+      "name": "عبدالودود حنيف",
+      "radio_url": "http://live.mp3quran.net:9848/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635me",
+      "name": "علي الحذيفي",
+      "radio_url": "http://live.mp3quran.net:9844/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mf",
+      "name": "علي الحذيفي",
+      "radio_url": "http://live.mp3quran.net:9846/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mg",
+      "name": "علي جابر",
+      "radio_url": "http://live.mp3quran.net:9964/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mh",
+      "name": "علي حجاج السويسي",
+      "radio_url": "http://live.mp3quran.net:9842/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mi",
+      "name": "عماد زهير حافظ",
+      "radio_url": "http://live.mp3quran.net:9840/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mj",
+      "name": "عمر القزابري",
+      "radio_url": "http://live.mp3quran.net:9838/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mk",
+      "name": "فارس عباد",
+      "radio_url": "http://live.mp3quran.net:9972/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635ml",
+      "name": "ماجد الزامل",
+      "radio_url": "http://live.mp3quran.net:8022/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mm",
+      "name": "ماهر المعيقلي",
+      "radio_url": "http://live.mp3quran.net:8002/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mn",
+      "name": "ماهر شخاشيرو",
+      "radio_url": "http://live.mp3quran.net:9836/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mo",
+      "name": "محمد أيوب",
+      "radio_url": "http://live.mp3quran.net:9960/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mp",
+      "name": "محمد أيوب - قراءة متميزة--",
+      "radio_url": "http://live.mp3quran.net:9700/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mq",
+      "name": "محمد الطبلاوي",
+      "radio_url": "http://live.mp3quran.net:9834/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-er4oY1ox635mr",
+      "name": "محمد اللحيدان",
+      "radio_url": "http://live.mp3quran.net:9832/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaM",
+      "name": "محمد جبريل",
+      "radio_url": "http://live.mp3quran.net:9962/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaN",
+      "name": "محمد رشاد الشريف",
+      "radio_url": "http://live.mp3quran.net:9830/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaO",
+      "name": "محمد صالح عالم شاه",
+      "radio_url": "http://live.mp3quran.net:9828/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaP",
+      "name": "محمد صديق المنشاوي",
+      "radio_url": "http://live.mp3quran.net:9826/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaQ",
+      "name": "محمد صديق المنشاوي",
+      "radio_url": "http://live.mp3quran.net:9978/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaR",
+      "name": "محمد عبدالحكيم سعيد العبدالله",
+      "radio_url": "http://live.mp3quran.net:9816/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaS",
+      "name": "محمد عبدالحكيم سعيد العبدالله",
+      "radio_url": "http://live.mp3quran.net:9814/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaT",
+      "name": "محمد عبدالكريم",
+      "radio_url": "http://live.mp3quran.net:9822/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaU",
+      "name": "محمد عبدالكريم",
+      "radio_url": "http://live.mp3quran.net:9824/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaV",
+      "name": "محمد عثمان خان ( من الهند )",
+      "radio_url": "http://live.mp3quran.net:9820/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaW",
+      "name": "محمود الرفاعي",
+      "radio_url": "http://live.mp3quran.net:9818/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaX",
+      "name": "محمود الشيمي",
+      "radio_url": "http://live.mp3quran.net:9812/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaY",
+      "name": "محمود خليل الحصري",
+      "radio_url": "http://live.mp3quran.net:9806/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2QaZ",
+      "name": "محمود خليل الحصري",
+      "radio_url": "http://live.mp3quran.net:9804/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qa_",
+      "name": "محمود خليل الحصري",
+      "radio_url": "http://live.mp3quran.net:9958/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qaa",
+      "name": "محمود علي البنا",
+      "radio_url": "http://live.mp3quran.net:9808/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qab",
+      "name": "محمود علي البنا",
+      "radio_url": "http://live.mp3quran.net:9810/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qac",
+      "name": "مشاري العفاسي",
+      "radio_url": "http://live.mp3quran.net:8010/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qad",
+      "name": "مصطفى إسماعيل",
+      "radio_url": "http://live.mp3quran.net:9800/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qae",
+      "name": "مصطفى اللاهوني",
+      "radio_url": "http://live.mp3quran.net:9798/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qaf",
+      "name": "مصطفى رعد العزاوي",
+      "radio_url": "http://live.mp3quran.net:9796/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qag",
+      "name": "معيض الحارثي",
+      "radio_url": "http://live.mp3quran.net:9802/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qah",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9794/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qai",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9788/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qaj",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9790/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qak",
+      "name": "مفتاح السلطني",
+      "radio_url": "http://live.mp3quran.net:9792/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qal",
+      "name": "موسى بلال",
+      "radio_url": "http://live.mp3quran.net:9786/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qam",
+      "name": "ناصر العصفور",
+      "radio_url": "http://live.mp3quran.net:8020/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qan",
+      "name": "ناصر القطامي",
+      "radio_url": "http://live.mp3quran.net:9994/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qao",
+      "name": "ناصر الماجد",
+      "radio_url": "http://live.mp3quran.net:9712/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qap",
+      "name": "نبيل الرفاعي",
+      "radio_url": "http://live.mp3quran.net:9784/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qaq",
+      "name": "نعمة الحسان",
+      "radio_url": "http://live.mp3quran.net:9782/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qar",
+      "name": "هاني الرفاعي",
+      "radio_url": "http://live.mp3quran.net:9780/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qas",
+      "name": "هيثم الجدعاني",
+      "radio_url": "http://live.mp3quran.net:9714/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qat",
+      "name": "وليد النائحي",
+      "radio_url": "http://live.mp3quran.net:9778/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qau",
+      "name": "ياسر الدوسري",
+      "radio_url": "http://live.mp3quran.net:9984/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qav",
+      "name": "ياسر القرشي",
+      "radio_url": "http://live.mp3quran.net:9776/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qaw",
+      "name": "ياسر المزروعي ",
+      "radio_url": "http://live.mp3quran.net:9774/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qax",
+      "name": "يحيى حوا",
+      "radio_url": "http://live.mp3quran.net:9772/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qay",
+      "name": "يوسف بن نوح أحمد",
+      "radio_url": "http://live.mp3quran.net:9768/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qaz",
+      "name": "يوسف الشويعي",
+      "radio_url": "http://live.mp3quran.net:9770/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qb-",
+      "name": "صلاح البدير",
+      "radio_url": "http://live.mp3quran.net:9882/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qb0",
+      "name": "ترتيلات قصيرة - مثال",
+      "radio_url": "http://live.mp3quran.net:9702/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeLx-f2Zilcxni2Qb1",
+      "name": "المختصر في تفسير القرآن الكريم - مثال",
+      "radio_url": "http://live.mp3quran.net:9698/;",
+      "category": "القرائ"
+    },
+    {
+      "id": "-OaeQc98dx8Y93V0qz4a",
+      "name": "سورة الفاتحة",
+      "radio_url": "https://server13.mp3quran.net/kht/001.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4Y",
+      "name": "سورة البقرة",
+      "radio_url": "https://server13.mp3quran.net/kht/002.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4Z",
+      "name": "سورة آل عمران",
+      "radio_url": "https://server13.mp3quran.net/kht/003.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4_",
+      "name": "سورة النساء",
+      "radio_url": "https://server13.mp3quran.net/kht/004.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4a",
+      "name": "سورة المائدة",
+      "radio_url": "https://server13.mp3quran.net/kht/005.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4b",
+      "name": "سورة الأنعام",
+      "radio_url": "https://server13.mp3quran.net/kht/006.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4c",
+      "name": "سورة الأعراف",
+      "radio_url": "https://server13.mp3quran.net/kht/007.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4d",
+      "name": "سورة الأنفال",
+      "radio_url": "https://server13.mp3quran.net/kht/008.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc99hBVQh8ajoo4e",
+      "name": "سورة التوبة",
+      "radio_url": "https://server13.mp3quran.net/kht/009.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7H",
+      "name": "سورة يونس",
+      "radio_url": "https://server13.mp3quran.net/kht/010.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7I",
+      "name": "سورة هود",
+      "radio_url": "https://server13.mp3quran.net/kht/011.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7J",
+      "name": "سورة يوسف",
+      "radio_url": "https://server13.mp3quran.net/kht/012.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7K",
+      "name": "سورة الرعد",
+      "radio_url": "https://server13.mp3quran.net/kht/013.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7L",
+      "name": "سورة إبراهيم",
+      "radio_url": "https://server13.mp3quran.net/kht/014.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7M",
+      "name": "سورة الحجر",
+      "radio_url": "https://server13.mp3quran.net/kht/015.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7N",
+      "name": "سورة النحل",
+      "radio_url": "https://server13.mp3quran.net/kht/016.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7O",
+      "name": "سورة الإسراء",
+      "radio_url": "https://server13.mp3quran.net/kht/017.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7P",
+      "name": "سورة الكهف",
+      "radio_url": "https://server13.mp3quran.net/kht/018.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7Q",
+      "name": "سورة مريم",
+      "radio_url": "https://server13.mp3quran.net/kht/019.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7R",
+      "name": "سورة طه",
+      "radio_url": "https://server13.mp3quran.net/kht/020.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7S",
+      "name": "سورة الأنبياء",
+      "radio_url": "https://server13.mp3quran.net/kht/021.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7T",
+      "name": "سورة الحج",
+      "radio_url": "https://server13.mp3quran.net/kht/022.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7U",
+      "name": "سورة المؤمنون",
+      "radio_url": "https://server13.mp3quran.net/kht/023.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7V",
+      "name": "سورة النور",
+      "radio_url": "https://server13.mp3quran.net/kht/024.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7W",
+      "name": "سورة الفرقان",
+      "radio_url": "https://server13.mp3quran.net/kht/025.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7X",
+      "name": "سورة الشعراء",
+      "radio_url": "https://server13.mp3quran.net/kht/026.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7Y",
+      "name": "سورة النمل",
+      "radio_url": "https://server13.mp3quran.net/kht/027.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7Z",
+      "name": "سورة القصص",
+      "radio_url": "https://server13.mp3quran.net/kht/028.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7_",
+      "name": "سورة العنكبوت",
+      "radio_url": "https://server13.mp3quran.net/kht/029.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7a",
+      "name": "سورة الروم",
+      "radio_url": "https://server13.mp3quran.net/kht/030.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7b",
+      "name": "سورة لقمان",
+      "radio_url": "https://server13.mp3quran.net/kht/031.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7c",
+      "name": "سورة السجدة",
+      "radio_url": "https://server13.mp3quran.net/kht/032.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7d",
+      "name": "سورة الأحزاب",
+      "radio_url": "https://server13.mp3quran.net/kht/033.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7e",
+      "name": "سورة سبأ",
+      "radio_url": "https://server13.mp3quran.net/kht/034.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7f",
+      "name": "سورة فاطر",
+      "radio_url": "https://server13.mp3quran.net/kht/035.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7g",
+      "name": "سورة يس",
+      "radio_url": "https://server13.mp3quran.net/kht/036.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9Ar6cqA0OD5C7h",
+      "name": "سورة الصافات",
+      "radio_url": "https://server13.mp3quran.net/kht/037.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDq6",
+      "name": "سورة ص",
+      "radio_url": "https://server13.mp3quran.net/kht/038.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDq7",
+      "name": "سورة الزمر",
+      "radio_url": "https://server13.mp3quran.net/kht/039.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDq8",
+      "name": "سورة غافر",
+      "radio_url": "https://server13.mp3quran.net/kht/040.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDq9",
+      "name": "سورة فُصِّلَتْ",
+      "radio_url": "https://server13.mp3quran.net/kht/041.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqA",
+      "name": "سورة الشورى",
+      "radio_url": "https://server13.mp3quran.net/kht/042.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqB",
+      "name": "سورة الزخرف",
+      "radio_url": "https://server13.mp3quran.net/kht/043.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqC",
+      "name": "سورة الدخان",
+      "radio_url": "https://server13.mp3quran.net/kht/044.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqD",
+      "name": "سورة الجاثية",
+      "radio_url": "https://server13.mp3quran.net/kht/045.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqE",
+      "name": "سورة الأحقاف",
+      "radio_url": "https://server13.mp3quran.net/kht/046.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqF",
+      "name": "سورة محمد",
+      "radio_url": "https://server13.mp3quran.net/kht/047.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqG",
+      "name": "سورة الفتح",
+      "radio_url": "https://server13.mp3quran.net/kht/048.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqH",
+      "name": "سورة الحجرات",
+      "radio_url": "https://server13.mp3quran.net/kht/049.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqI",
+      "name": "سورة ق",
+      "radio_url": "https://server13.mp3quran.net/kht/050.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqJ",
+      "name": "سورة الذاريات",
+      "radio_url": "https://server13.mp3quran.net/kht/051.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqK",
+      "name": "سورة الطور",
+      "radio_url": "https://server13.mp3quran.net/kht/052.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqL",
+      "name": "سورة النجم",
+      "radio_url": "https://server13.mp3quran.net/kht/053.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqM",
+      "name": "سورة القمر",
+      "radio_url": "https://server13.mp3quran.net/kht/054.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqN",
+      "name": "سورة الرحمن",
+      "radio_url": "https://server13.mp3quran.net/kht/055.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqO",
+      "name": "سورة الواقعة",
+      "radio_url": "https://server13.mp3quran.net/kht/056.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqP",
+      "name": "سورة الحديد",
+      "radio_url": "https://server13.mp3quran.net/kht/057.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqQ",
+      "name": "سورة المجادلة",
+      "radio_url": "https://server13.mp3quran.net/kht/058.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqR",
+      "name": "سورة الحشر",
+      "radio_url": "https://server13.mp3quran.net/kht/059.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqS",
+      "name": "سورة الممتحنة",
+      "radio_url": "https://server13.mp3quran.net/kht/060.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqT",
+      "name": "سورة الصف",
+      "radio_url": "https://server13.mp3quran.net/kht/061.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqU",
+      "name": "سورة الجمعة",
+      "radio_url": "https://server13.mp3quran.net/kht/062.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqV",
+      "name": "سورة المنافقون",
+      "radio_url": "https://server13.mp3quran.net/kht/063.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqW",
+      "name": "سورة التغابن",
+      "radio_url": "https://server13.mp3quran.net/kht/064.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqX",
+      "name": "سورة الطلاق",
+      "radio_url": "https://server13.mp3quran.net/kht/065.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqY",
+      "name": "سورة التحريم",
+      "radio_url": "https://server13.mp3quran.net/kht/066.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDqZ",
+      "name": "سورة الملك",
+      "radio_url": "https://server13.mp3quran.net/kht/067.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9BJ5atIYAjZDq_",
+      "name": "سورة القلم",
+      "radio_url": "https://server13.mp3quran.net/kht/068.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHp",
+      "name": "سورة الحاقة",
+      "radio_url": "https://server13.mp3quran.net/kht/069.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHq",
+      "name": "سورة المعارج",
+      "radio_url": "https://server13.mp3quran.net/kht/070.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHr",
+      "name": "سورة نوح",
+      "radio_url": "https://server13.mp3quran.net/kht/071.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHs",
+      "name": "سورة الجن",
+      "radio_url": "https://server13.mp3quran.net/kht/072.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHt",
+      "name": "سورة المزمل",
+      "radio_url": "https://server13.mp3quran.net/kht/073.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHu",
+      "name": "سورة المدثر",
+      "radio_url": "https://server13.mp3quran.net/kht/074.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHv",
+      "name": "سورة القيامة",
+      "radio_url": "https://server13.mp3quran.net/kht/075.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHw",
+      "name": "سورة الإنسان",
+      "radio_url": "https://server13.mp3quran.net/kht/076.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHx",
+      "name": "سورة المرسلات",
+      "radio_url": "https://server13.mp3quran.net/kht/077.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHy",
+      "name": "سورة النبأ",
+      "radio_url": "https://server13.mp3quran.net/kht/078.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaHz",
+      "name": "سورة النازعات",
+      "radio_url": "https://server13.mp3quran.net/kht/079.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI-",
+      "name": "سورة عبس",
+      "radio_url": "https://server13.mp3quran.net/kht/080.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI0",
+      "name": "سورة التكوير",
+      "radio_url": "https://server13.mp3quran.net/kht/081.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI1",
+      "name": "سورة الانفطار",
+      "radio_url": "https://server13.mp3quran.net/kht/082.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI2",
+      "name": "سورة المطففين",
+      "radio_url": "https://server13.mp3quran.net/kht/083.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI3",
+      "name": "سورة الانشقاق",
+      "radio_url": "https://server13.mp3quran.net/kht/084.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI4",
+      "name": "سورة البروج",
+      "radio_url": "https://server13.mp3quran.net/kht/085.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI5",
+      "name": "سورة الطارق",
+      "radio_url": "https://server13.mp3quran.net/kht/086.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI6",
+      "name": "سورة الأعلى",
+      "radio_url": "https://server13.mp3quran.net/kht/087.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI7",
+      "name": "سورة الغاشية",
+      "radio_url": "https://server13.mp3quran.net/kht/088.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI8",
+      "name": "سورة الفجر",
+      "radio_url": "https://server13.mp3quran.net/kht/089.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaI9",
+      "name": "سورة البلد",
+      "radio_url": "https://server13.mp3quran.net/kht/090.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIA",
+      "name": "سورة الشمس",
+      "radio_url": "https://server13.mp3quran.net/kht/091.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIB",
+      "name": "سورة الليل",
+      "radio_url": "https://server13.mp3quran.net/kht/092.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIC",
+      "name": "سورة الضحى",
+      "radio_url": "https://server13.mp3quran.net/kht/093.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaID",
+      "name": "سورة الشرح",
+      "radio_url": "https://server13.mp3quran.net/kht/094.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIE",
+      "name": "سورة التين",
+      "radio_url": "https://server13.mp3quran.net/kht/095.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIF",
+      "name": "سورة العلق",
+      "radio_url": "https://server13.mp3quran.net/kht/096.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIG",
+      "name": "سورة القدر",
+      "radio_url": "https://server13.mp3quran.net/kht/097.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIH",
+      "name": "سورة البينة",
+      "radio_url": "https://server13.mp3quran.net/kht/098.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaII",
+      "name": "سورة الزلزلة",
+      "radio_url": "https://server13.mp3quran.net/kht/099.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIJ",
+      "name": "سورة العاديات",
+      "radio_url": "https://server13.mp3quran.net/kht/100.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIK",
+      "name": "سورة القارعة",
+      "radio_url": "https://server13.mp3quran.net/kht/101.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIL",
+      "name": "سورة التكاثر",
+      "radio_url": "https://server13.mp3quran.net/kht/102.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIM",
+      "name": "سورة العصر",
+      "radio_url": "https://server13.mp3quran.net/kht/103.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIN",
+      "name": "سورة الهمزة",
+      "radio_url": "https://server13.mp3quran.net/kht/104.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIO",
+      "name": "سورة الفيل",
+      "radio_url": "https://server13.mp3quran.net/kht/105.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIP",
+      "name": "سورة قريش",
+      "radio_url": "https://server13.mp3quran.net/kht/106.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIQ",
+      "name": "سورة الماعون",
+      "radio_url": "https://server13.mp3quran.net/kht/107.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIR",
+      "name": "سورة الكوثر",
+      "radio_url": "https://server13.mp3quran.net/kht/108.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9COUaNGW-NcaIS",
+      "name": "سورة الكافرون",
+      "radio_url": "https://server13.mp3quran.net/kht/109.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9DGFMGN-zEf9rj",
+      "name": "سورة النصر",
+      "radio_url": "https://server13.mp3quran.net/kht/110.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9DGFMGN-zEf9rk",
+      "name": "سورة المسد",
+      "radio_url": "https://server13.mp3quran.net/kht/111.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9DGFMGN-zEf9rl",
+      "name": "سورة الإخلاص",
+      "radio_url": "https://server13.mp3quran.net/kht/112.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9DGFMGN-zEf9rm",
+      "name": "سورة الفلق",
+      "radio_url": "https://server13.mp3quran.net/kht/113.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-OaeQc9DGFMGN-zEf9rn",
+      "name": "سورة الناس",
+      "radio_url": "https://server13.mp3quran.net/kht/114.mp3",
+      "category": "القرآن الكريم"
+    },
+    {
+      "id": "-P-ZexVzDhrvhvXp8I5u",
+      "name": "تلاوات رهيبة",
+      "radio_url": "https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496",
+      "category": "العامة"
+    }
+  ],
+  "categories": [
+    "القرآن الكريم",
+    "العامة",
+    "القرائ",
+    "قصص الانبياء",
+    "خالد الراشد",
+    "الرقية الشرعية",
+    "راديو محلي",
+    "تجريبي"
+  ],
+  "favorites": [],
+  "recentlyPlayed": [
+    "-OaIlMpvZ7dfb_P5C9ip",
+    "-OaIlMpvZ7dfb_P5C9io",
+    "-OaIl9lGZI2BTPlPaKlC",
+    "-OaIl57sKCRvChEGeods",
+    "-OaIl57sKCRvChEGeodw",
+    "-OaeLx-cEAb3cLOBLn5B",
+    "-OaeLx-cEAb3cLOBLn55",
+    "-OaeQc98dx8Y93V0qz4a",
+    "-OaeQc99hBVQh8ajoo4_",
+    "-OaIkapfqL9uH9JL5bdI",
+    "-OaIlMpvZ7dfb_P5C9iv",
+    "-OaIlMpvZ7dfb_P5C9iq",
+    "-OaeLopZOfmLFH8a2owy",
+    "-OaeLopZOfmLFH8a2owv",
+    "-OaeLopXJIaHymeU48kM",
+    "-OaIlMpvZ7dfb_P5C9is",
+    "-OaIl9lGZI2BTPlPaKlF",
+    "-OaIl57sKCRvChEGeodv",
+    "-OaeLx-cEAb3cLOBLn5C",
+    "-OaeLx-cEAb3cLOBLn5A"
+  ],
+  "alarms": []
+    }        top_frame.pack(fill=tk.X, side=tk.TOP)
 
         title_label = tk.Label(top_frame, text="📻 مشغل الصوتيات المتقدم", font=("Arial", 20, "bold"),
                                fg="white", bg="#2c3e50")
