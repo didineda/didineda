@@ -561,42 +561,6 @@
       "category": "الرقية الشرعية"
     },
     {
-      "id": "-OaRHeBePb15vZ8CGBlS",
-      "name": "اذاعة الأولى",
-      "radio_url": "https://webradio.tda.dz/Chaine1_64K.mp3",
-      "category": "راديو محلي"
-    },
-    {
-      "id": "-OaRIT60fTqr26VhLZpU",
-      "name": "الثانية الجزائرية",
-      "radio_url": "https://webradio.tda.dz/Internationale_64K.mp3",
-      "category": "راديو محلي"
-    },
-    {
-      "id": "-OaRJ4CuF2TLTQqqmiiv",
-      "name": "القرآن الكريم",
-      "radio_url": "https://webradio.tda.dz/Coran_64K.mp3",
-      "category": "راديو محلي"
-    },
-    {
-      "id": "-OaRKjjrMTkVzJNXSF3J",
-      "name": "الثقافية",
-      "radio_url": "https://webradio.tda.dz/Culture_64K.mp3",
-      "category": "راديو محلي"
-    },
-    {
-      "id": "-OaRc-1sCqKIRRCBapxP",
-      "name": "راديو البهجة",
-      "radio_url": "https://webradio.tda.dz/ElBahdja_64K.mp3",
-      "category": "راديو محلي"
-    },
-    {
-      "id": "-OaSrKH8DGy_Dh3Jn0w1",
-      "name": "اذاعة عين الدفلى",
-      "radio_url": "https://webradio.tda.dz/AinDefla_64K.mp3",
-      "category": "راديو محلي"
-    },
-    {
       "id": "-OaeLopWHqRgLO4NvLz2",
       "name": "إذاعة أحمد الطرابلسي",
       "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi",
@@ -3330,7 +3294,7 @@
   "categories": [
     "القرآن الكريم",
     "العامة",
-    "القراء",
+    "القرائ",
     "قصص الانبياء",
     "خالد الراشد",
     "أناشيد",
