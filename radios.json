@@ -867,17 +867,17 @@
       "category": "الرقية الشرعية"
     },            
    {
-      "id": "-OaeLx-cEAb3cLOBLn54",
-      "name": "عبد العزيز السحيم",
-      "radio_url": "https://backup.qurango.net/radio/a_sheim",
-      "category": "القرائ"
-    },
-    {
-      "id": "-OaeLx-cEAb3cLOBLn55",
-      "name": "إذاعة أحمد الطرابلسي",
-      "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi",
-      "category": "القرائ"
-    },
+  "id": "-OaeLx-cEAb3cLOBLn64",
+  "name": "عبد العزيز السحيم",
+  "radio_url": "https://backup.qurango.net/radio/a_sheim",
+  "category": "القرائ"
+},
+{
+  "id": "-OaeLx-cEAb3cLOBLn55",
+  "name": "إذاعة أحمد الطرابلسي",
+  "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi",
+  "category": "القرائ"
+}
     {
       "id": "-OaeLx-cEAb3cLOBLn56",
       "name": "إذاعة أحمد خضر الطرابلسي",
