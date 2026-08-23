@@ -39,6 +39,12 @@
     "category": "أناشيد"
     }, 
     {
+      "id": "radio_quran",
+      "name": "إذاعة القرآن الكريم",
+      "radio_url": "https://radiocoran.ice.infomaniak.ch/coran.mp3",
+      "category": "العامة"
+    }, 
+    {
       "id": "r7b3nzkzng8uv",
       "name": "أناشيد",
       "radio_url": "https://stream.zeno.fm/r7b3nzkzng8uv",
