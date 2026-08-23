@@ -866,6 +866,54 @@
       "radio_url": "https://Qurango.net/radio/yousef_bin_noah_ahmad",
       "category": "الرقية الشرعية"
     },            
+  {
+    "id": "-OaeLx-cEAb3cLOBLn64",
+    "name": "عبد العزيز السحيم",
+    "radio_url": "https://backup.qurango.net/radio/a_sheim",
+    "category": "القرائ"
+  },
+  {
+    "id": "-OaeLx-cEAb3cLOBLn55",
+    "name": "إذاعة أحمد الطرابلسي",
+    "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi",
+    "category": "القرائ"
+  },
+  {
+    "id": "-OaeLx-cEAb3cLOBLn65",
+    "name": "تفداك عيني",
+    "radio_url": "https://ed.podomatic.net/e/1buzyad.podomatic.com/2012-11-20T23_47_49-08_00.mp3",
+    "category": "أناشيد"
+  },
+  {
+    "id": "-OaeLx-cEAb3cLOBLn66",
+    "name": "يا رسول الله وقدوتنا",
+    "radio_url": "https://1buzyad.podomatic.com/enclosure/2012-10-09T21_23_10-07_00.mp3",
+    "category": "أناشيد"
+  },
+  {
+    "id": "-OaeLx-cEAb3cLOBLn67",
+    "name": "سبيل مريح",
+    "radio_url": "https://1buzyad.podomatic.com/enclosure/2012-10-09T21_23_10-07_00.mp3",
+    "category": "أناشيد"
+  },
+  {
+    "id": "-OaeLx-cEAb3cLOBLn68",
+    "name": "يا ذاكرا لأصحاب محمد",
+    "radio_url": "https://ia600602.us.archive.org/23/items/ghayatyjannaty-ahmed-01/ya_zaker.mp3",
+    "category": "أناشيد"
+  },
+  {
+    "id": "-OaeLx-cEAb3cLOBLn69",
+    "name": "ابتسم",
+    "radio_url": "https://ia600602.us.archive.org/23/items/ghayatyjannaty-ahmed-01/ya_zaker.mp3",
+    "category": "أناشيد"
+  },
+  {
+    "id": "-OaeLx-cEAb3cLOBLn70",
+    "name": "هزتني نسمات الليالي",
+    "radio_url": "https://sinanjasim.podomatic.com/enclosure/2011-11-06T19_27_07-08_00.mp3?_=1320636449.5282125",
+    "category": "أناشيد"
+    }, 
     {
       "id": "-OaeLx-cEAb3cLOBLn64",
       "name": "عبد العزيز السحيم",
