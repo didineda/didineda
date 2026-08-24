@@ -1,4 +1,3 @@
-
 {
   "name": "ارح سمعك - الإذاعات والتسجيلات الصوتية",
   "short_name": "ارح سمعك",
@@ -10,9 +9,15 @@
   "icons": [
     {
       "src": "https://didineda.github.io/didineda/icon.svg",
-      "sizes": "512x512",
+      "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "id": "arh-samak",
+  "dir": "rtl",
+  "lang": "ar",
+  "scope": "/",
+  "orientation": "portrait"
 }
+ 
