@@ -18,5 +18,11 @@
   "dir": "rtl",
   "lang": "ar",
   "scope": "/",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "categories": [
+    "books &amp; reference",
+    "entertainment",
+    "multimedia",
+    "music"
+  ]
 }
