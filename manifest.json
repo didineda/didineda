@@ -13,5 +13,10 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "id": "arh-samak",
+  "dir": "rtl",
+  "lang": "ar",
+  "scope": "/",
+  "orientation": "portrait"
 }
