@@ -1,0 +1,17 @@
+{
+  "name": "ارح سمعك - الإذاعات والتسجيلات الصوتية",
+  "short_name": "ارح سمعك",
+  "description": "تطبيق الاستماع للإذاعات والتسجيلات الصوتية",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1217",
+  "theme_color": "#101418",
+  "icons": [
+    {
+      "src": "https://didineda.github.io/didineda/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
