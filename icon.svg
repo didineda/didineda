@@ -1,14 +1,28 @@
-"icons": [
-  {
+{
+  "name": "ارح سمعك - الإذاعات والتسجيلات الصوتية",
+  "short_name": "ارح سمعك",
+  "description": "تطبيق الاستماع للإذاعات والتسجيلات الصوتية",
+  "start_url": "https://mashayekh-dz1.blogspot.com/",
+  "scope": "https://mashayekh-dz1.blogspot.com/",
+  "id": "https://mashayekh-dz1.blogspot.com/",
+  "display": "standalone",
+  "background_color": "#0f1217",
+  "theme_color": "#101418",
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
       "src": "https://didineda.github.io/didineda/icon.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
-      "purpose": "any"
-  },
-  {
-      "src": "https://didineda.github.io/didineda/icon.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "maskable"
-  }
-]
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "books",
+    "entertainment",
+    "multimedia",
+    "music"
+  ]
+}
