@@ -144,6 +144,18 @@
     {"id": "quran_113", "name": "سورة الفلق", "radio_url": "https://server11.mp3quran.net/qari/113.mp3", "category": "القرآن الكريم", "reader": "ياسين الجزائري"},
     {"id": "quran_114", "name": "سورة الناس", "radio_url": "https://server11.mp3quran.net/qari/114.mp3", "category": "القرآن الكريم", "reader": "ياسين الجزائري"},
 
+    {"_comment": "======================================== قسم الأناشيد - المنشد أسامة الصافي ========================================"},
+    {"id": "taballagh_01", "name": "تبلغ بالقليل", "radio_url": "https://archive.org/download/02-drb-taballagh/02_Drb_taballagh.mp3", "category": "الأناشيد", "reader": "أسامة الصافي"},
+   
+    {"_comment": "======================================== قسم الأناشيد - المنشد ياسر فاروق أبو عمار ========================================"},
+    {"id": "track_01", "name": "بك أستجير", "radio_url": "https://archive.org/download/track-02_202608/Track02.mp3", "category": "الأناشيد", "reader": "ياسر فاروق أبو عمار"},
+   
+    {"_comment": "======================================== قسم الأناشيد - المنشد أحمد العجمي ========================================"},
+    {"id": "hijab_01", "name": "انا سمعنا عن الحجاب", "radio_url": "https://archive.org/download/hijab_20260825/hijab.mp3", "category": "الأناشيد", "reader": "أحمد العجمي"},
+   
+    {"_comment": "======================================== قسم الأناشيد - المنشد أبو علي ========================================"},
+    {"id": "yahoma_01", "name": "ياهموم القلب ذوبي", "radio_url": "https://archive.org/download/yahoma-l9albi-thobi/yahoma-l9albi-thobi.mp3", "category": "الأناشيد", "reader": "أبو علي"},
+  
     {"_comment": "======================================== قسم الأناشيد - المنشد أبو عبد الملك ========================================"},
     {"id": "makan_01", "name": "كفى يانفس ماكان", "radio_url": "https://archive.org/download/kafa_yanafsso_makan_01/kafa_yanafsso_makan_01.mp3", "category": "الأناشيد", "reader": "أبو عبد الملك"},
 
