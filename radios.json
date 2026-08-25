@@ -180,12 +180,10 @@
     {"id": "mais-7", "name": "لبيك إسلام البطولة", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-231-labaik-islam-albotola.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
     {"id": "mais-8", "name": "لو حطوا", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-232-law-hatou.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
     {"id": "mais-9", "name": "صباح الخير", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-233-sabahi-lkhir.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
-    {"id": "mais-10", "name": "صوتك مجروح", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-234-sotak-majrouh.mp3", "category": "الأناشيد", "reader": "ميس شلش"}
-         {"id": "mais-10", "name": "صوتك مجروح", "radio_url": "https://media.assabile.com/.../sotak-majrouh.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
+    {"id": "mais-10", "name": "صوتك مجروح", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-234-sotak-majrouh.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
 
-    {"_comment": "======================================== قسم الأناشيد - المنشد أحمد بو خاطر ========================================"},
-    {"id": "abukhater-1", "name": "ربي إني ظلمت نفسي", "radio_url": "https://archive.org/download/.../rabi.mp3", "category": "الأناشيد", "reader": "أحمد بو خاطر"},
-    {"id": "abukhater-2", "name": "يا أمي", "radio_url": "https://archive.org/download/.../ya-ommi.mp3", "category": "الأناشيد", "reader": "أحمد بو خاطر"}
+    {"_comment": "======================================== قسم الأناشيد - المنشد مشاري العفاسي ========================================"},
+    {"id": "afasy-1", "name": "طلع البدر علينا", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"}
   ],
   "categories": [
     "القرآن الكريم",
@@ -194,4 +192,4 @@
     "الأناشيد",
     "الرقية الشرعية"
   ]
-}  
+}
