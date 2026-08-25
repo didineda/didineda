@@ -170,7 +170,7 @@
     {"id": "sami-22", "name": "أم (التركية)", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-3-mother-turkish.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
     {"id": "sami-23", "name": "نحن لن نخضع أبدًا", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-14-we-will-never-submit.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
     {"id": "sami-24", "name": "دعاء (التركية)", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-21-dua-turkish.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
-    {"id": "badr-1", "name": "نشيد بدر", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "بدر"}
+    {"id": "badr-1", "name": "نشيد بدر", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "بدر"},
     
     {"_comment": "======================================== قسم الأناشيد - المنشدة ميس شلش ========================================"},
     {"id": "mais-1", "name": "ليلة الإسراء", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-225-laylat-alisraa.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
