@@ -145,7 +145,7 @@
     {"id": "quran_113", "name": "سورة الفلق", "radio_url": "https://server11.mp3quran.net/qari/113.mp3", "category": "القرآن الكريم", "reader": "ياسين الجزائري"},
     {"id": "quran_114", "name": "سورة الناس", "radio_url": "https://server11.mp3quran.net/qari/114.mp3", "category": "القرآن الكريم", "reader": "ياسين الجزائري"},
 
-    {"_comment": "======================================== قسم الأناشيد - المنشد سامي يوسف ========================================"},
+    {"_comment": "======================================== قسم الاناشيد - المنشد سامي يوسف ========================================"},
     {"id": "sami-1", "name": "المعلم", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-18-al-muallim.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
     {"id": "sami-2", "name": "من هو الحب الواحد", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-15-who-is-the-loved-one.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
     {"id": "sami-3", "name": "غار حراء", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-11-the-cave-of-hira.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
@@ -170,9 +170,8 @@
     {"id": "sami-22", "name": "أم (التركية)", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-3-mother-turkish.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
     {"id": "sami-23", "name": "نحن لن نخضع أبدًا", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-14-we-will-never-submit.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
     {"id": "sami-24", "name": "دعاء (التركية)", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-21-dua-turkish.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
-    {"id": "sami-25", "name": "نشيد بدر", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
-    
-    {"_comment": "======================================== قسم الأناشيد - المنشدة ميس شلش ========================================"},
+      
+    {"_comment": "======================================== قسم  الاناشيد - المنشدة ميس شلش ========================================"},
     {"id": "mais-1", "name": "ليلة الإسراء", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-225-laylat-alisraa.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
     {"id": "mais-2", "name": "يا أحرار العالم", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-226-ya-ahrar-al3alam.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
     {"id": "mais-3", "name": "يا أقصى", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-227-ya-aksa.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
@@ -183,6 +182,11 @@
     {"id": "mais-8", "name": "لو حطوا", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-232-law-hatou.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
     {"id": "mais-9", "name": "صباح الخير", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-233-sabahi-lkhir.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
     {"id": "mais-10", "name": "صوتك مجروح", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-234-sotak-majrouh.mp3", "category": "الأناشيد", "reader": "ميس شلش"}
+ 
+
+    {"_comment": "======================================== قسم   الاناشيد - المنشدة ميس شلش ========================================"},
+    {"id": "mais-1", "name": "طلع البدر علينا", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"},
+ 
   ],
   "categories": [
     "القرآن الكريم",
