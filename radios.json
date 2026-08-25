@@ -183,8 +183,8 @@
     {"id": "mais-10", "name": "صوتك مجروح", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/mais-shalash-234-sotak-majrouh.mp3", "category": "الأناشيد", "reader": "ميس شلش"},
 
     {"_comment": "======================================== قسم الأناشيد - المنشد مشاري العفاسي ========================================"},
-    {"id": "afasy-2", "name": "رحمن يا رحمن", "radio_url": "https://archive.org/download/111_20260825_202608/111.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"}
-    {"id": "afasy-1", "name": "طلع البدر علينا", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"}
+    {"id": "afasy-1", "name": "رحمن يا رحمن", "radio_url": "https://archive.org/download/111_20260825_202608/111.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"}
+    {"id": "afasy-2", "name": "طلع البدر علينا", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"}
   ],
   "categories": [
     "القرآن الكريم",
