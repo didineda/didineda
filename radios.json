@@ -22,7 +22,10 @@
     {"id": "-OaIlMpvZ7dfb_P5C9iw", "name": "أحمد بن علي العجمي", "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Ahmed_Al-Ajami.mp3", "category": "الرقية الشرعية"},
     {"id": "-mUSLEm", "name": "نبيل العوضي", "radio_url": "https://archive.org/download/Roqia_du_Coran_et_de_la_Sunna_uP_bY_mUSLEm/008-_up_by_muslem.mp3", "category": "الرقية الشرعية"},
     {"id": "-mUSLEm2", "name": "شريم و السديس", "radio_url": "https://archive.org/download/Roqia_du_Coran_et_de_la_Sunna_uP_bY_mUSLEm/005-_up_by_muslem.mp3", "category": "الرقية الشرعية"},
-   
+    {"id": "-mUSLEm3", "name": "عبد الملك", "radio_url": "https://archive.org/download/Roqia_du_Coran_et_de_la_Sunna_uP_bY_mUSLEm/002-_up_by_muslem.mp3", "category": "الرقية الشرعية"},
+    {"id": "-mUSLEm4", "name": "عبد الباسط عبد الصمد", "radio_url": "https://archive.org/download/Roqia_du_Coran_et_de_la_Sunna_uP_bY_mUSLEm/005-_up_by_muslem.mp3", "category": "الرقية الشرعية"},
+    {"id": "-mUSLEm5", "name": "عبد العزيز بن عبد الخالق", "radio_url": "https://archive.org/download/Roqia_du_Coran_et_de_la_Sunna_uP_bY_mUSLEm/010-_up_by_muslem.mp3", "category": "الرقية الشرعية"},
+  
     {"_comment": "======================================== قسم القراء (إذاعات) ========================================"},
     {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://backup.qurango.net/radio/a_sheim", "category": "القرائ"},
     {"id": "-OaeLx-cEAb3cLOBLn55", "name": "إذاعة أحمد الطرابلسي", "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi", "category": "القرائ"},
