@@ -32,8 +32,8 @@
     {"id": "-mUSLEm10", "name": "توفيق السائغ", "radio_url": "https://archive.org/download/Roqia_du_Coran_et_de_la_Sunna_uP_bY_mUSLEm/016-_up_by_muslem.mp3", "category": "الرقية الشرعية"},
     {"id": "-mUSLEm11", "name": "وليد ابراهيم الدليمي", "radio_url": "https://archive.org/download/Roqia_du_Coran_et_de_la_Sunna_uP_bY_mUSLEm/017-_up_by_muslem.mp3", "category": "الرقية الشرعية"},
 
-    {"_comment": "======================================== قسم القراء (حصن المسلم mp3) ========================================"},
-    {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/000sa7e7moslm_ketaabaleeman.mp3", "category": "القرائ"},
+    {"_comment": "======================================== قسم القراء (صحيح المسلم mp3) ========================================"},
+    {"id": "-7moslm", "name":"صحيح مسلم", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/000sa7e7moslm_ketaabaleeman.mp3", "category": "صحيح المسلم mp3"},
     
     {"_comment": "======================================== قسم القراء (إذاعات) ========================================"},
     {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://backup.qurango.net/radio/a_sheim", "category": "القرائ"},
