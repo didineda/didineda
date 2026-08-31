@@ -35,7 +35,9 @@
     {"_comment": "======================================== قسم القراء (صحيح المسلم mp3) ========================================"},
     {"id": "-7moslm", "name":"مقدمة صحيح مسلم", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/000sa7e7moslm_ketaabaleeman.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm1", "name":"كتاب الإيمان", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/001sa7e7moslm_ketaabaleeman.mp3", "category": "صحيح المسلم mp3"},
- 
+    {"id": "-7moslm2", "name":"كتاب الطهارة", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/002sa7e7moslm_ketaaba66harah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm3", "name":"كتاب الحيض", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/003sa7e7moslm_ketaabal7aydh.mp3", "category": "صحيح المسلم mp3"},
+
     {"_comment": "======================================== قسم القراء (إذاعات) ========================================"},
     {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://backup.qurango.net/radio/a_sheim", "category": "القرائ"},
     {"id": "-OaeLx-cEAb3cLOBLn55", "name": "إذاعة أحمد الطرابلسي", "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi", "category": "القرائ"},
