@@ -57,7 +57,16 @@
     {"id": "-7moslm21", "name":"كتاب البيوع ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/021sa7e7moslm_kboyoo3.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm22", "name":"كتاب المساقات ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/022sa7e7moslm_kmosaqaah.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm23", "name":"كتاب الفرائض ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/023sa7e7moslm_kfaraeed.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm24", "name":"كتاب الهبات   ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/024sa7e7moslm_khebaat.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm25", "name":"كتاب الوصية ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/025sa7e7moslm_kwa9yeah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm26", "name":"كتاب  الندر ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/026sa7e7moslm_kannothor.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm27", "name":"كتاب الايمان ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/027sa7e7moslm_kaymaan.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm28", "name":"كتاب االقسامة ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/028sa7e7moslm_kqasaamah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm29", "name":"كتاب الحدود ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/029sa7e7moslm_k7odood.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm30", "name":"كتاب االاقضية ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/030sa7e7moslm_kaqdyah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm31", "name":"كتاب اللقطاه ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/031sa7e7moslm_kloqa6ah.mp3", "category": "صحيح المسلم mp3"},
 
+    
     
     {"_comment": "======================================== قسم القراء (إذاعات) ========================================"},
     {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://backup.qurango.net/radio/a_sheim", "category": "القرائ"},
