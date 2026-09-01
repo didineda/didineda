@@ -37,7 +37,11 @@
     {"id": "-7moslm1", "name":"كتاب الإيمان", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/001sa7e7moslm_ketaabaleeman.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm2", "name":"كتاب الطهارة", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/002sa7e7moslm_ketaaba66harah.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm3", "name":"كتاب الحيض", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/003sa7e7moslm_ketaabal7aydh.mp3", "category": "صحيح المسلم mp3"},
-
+    {"id": "-7moslm4", "name":"كتاب الصلاة", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/004sa7e7moslm_ketaabalsalah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm5", "name":"كتاب مساجد وموضع الصلاة ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/005sa7e7moslm_kmwade3alsalah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm6", "name":"كتاب صلاة المسافرين وقصرها ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/006sa7e7moslm_ksalatalmosafer.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm7", "name":"كتاب الجمعة ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/007sa7e7moslm_kjomo3ah.mp3", "category": "صحيح المسلم mp3"},
+    
     {"_comment": "======================================== قسم القراء (إذاعات) ========================================"},
     {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://backup.qurango.net/radio/a_sheim", "category": "القرائ"},
     {"id": "-OaeLx-cEAb3cLOBLn55", "name": "إذاعة أحمد الطرابلسي", "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi", "category": "القرائ"},
