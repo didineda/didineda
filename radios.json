@@ -41,6 +41,10 @@
     {"id": "-7moslm5", "name":"كتاب مساجد وموضع الصلاة ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/005sa7e7moslm_kmwade3alsalah.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm6", "name":"كتاب صلاة المسافرين وقصرها ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/006sa7e7moslm_ksalatalmosafer.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm7", "name":"كتاب الجمعة ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/007sa7e7moslm_kjomo3ah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm8", "name":"كتاب الكسوف  ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/008sa7e7moslm_kal3edayn.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm9", "name":"كتاب صلاة الاستسقاء ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/009sa7e7moslm_kestesqaa.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm10", "name":"كتاب صلاة العيدين ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/010sa7e7moslm_kkosoof.mp3", "category": "صحيح المسلم mp3"},
+
     
     {"_comment": "======================================== قسم القراء (إذاعات) ========================================"},
     {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://backup.qurango.net/radio/a_sheim", "category": "القرائ"},
