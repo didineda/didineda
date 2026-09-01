@@ -44,6 +44,11 @@
     {"id": "-7moslm8", "name":"كتاب الكسوف  ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/008sa7e7moslm_kal3edayn.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm9", "name":"كتاب صلاة الاستسقاء ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/009sa7e7moslm_kestesqaa.mp3", "category": "صحيح المسلم mp3"},
     {"id": "-7moslm10", "name":"كتاب صلاة العيدين ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/010sa7e7moslm_kkosoof.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm11", "name":"كتاب الجنائز ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/011sa7e7moslm_kjanaaezz.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm12", "name":"كتاب الزكاة ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/012sa7e7moslm_kzakah.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm13", "name":"كتاب الصيام ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/013sa7e7moslm_ksyaam.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm14", "name":"كتاب صلاة الاعتكاف ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/014sa7e7moslm_ke3tekaaf.mp3", "category": "صحيح المسلم mp3"},
+    {"id": "-7moslm15", "name":"كتاب صلاة الحج ", "radio_url": "https://archive.org/download/015sa-7e-7moslm-khajj_202502/015sa7e7moslm_khajj.mp3", "category": "صحيح المسلم mp3"},
 
     
     {"_comment": "======================================== قسم القراء (إذاعات) ========================================"},
