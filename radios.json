@@ -9,7 +9,41 @@
     {"id": "-OaIkapfqL9uH9JL5bdE", "name": "قصص الأنبياء", "radio_url": "https://backup.qurango.net/radio/alanbiya", "category": "العامة"},
     {"id": "-OaIkapfqL9uH9JL5bdF", "name": "آيات السحر", "radio_url": "http://live.mp3quran.net:9924/;", "category": "العامة"},
     {"id": "-OaIkapfqL9uH9JL5bdJ", "name": "تلاوات خاشعة", "radio_url": "http://live.mp3quran.net:9966/;", "category": "العامة"},
+ 
+    {"id": "quran_001", "name": "سورة الفاتحة", "radio_url": "https://server11.mp3quran.net/qari/001.mp3", "category": "القرآن الكريم", "reader": "ياسين الجزائري"},
+    {"id": "quran_002", "name": "سورة البقرة", "radio_url": "https://server11.mp3quran.net/qari/002.mp3", "category": "القرآن الكريم", "reader": "ياسين الجزائري"},
+    {"id": "quran_036", "name": "سورة يس", "radio_url": "https://server11.mp3quran.net/qari/036.mp3", "category": "القرآن الكريم", "reader": "ياسين الجزائري"},
 
+    {"id": "afasy-1", "name": "طلع البدر علينا", "radio_url": "https://archive.org/download/286_20260825/badr.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"},
+    {"id": "afasy-2", "name": "رحمن يا رحمن", "radio_url": "https://archive.org/download/111_20260825_202608/111.mp3", "category": "الأناشيد", "reader": "مشاري العفاسي"},
+    {"id": "sami-1", "name": "المعلم", "radio_url": "https://media.assabile.com/assabile/songs_754122268/mp3/sami-yusuf-18-al-muallim.mp3", "category": "الأناشيد", "reader": "سامي يوسف"},
+ 
+    {"id": "-OaIlMpvZ7dfb_P5C9io", "name": "خالد القحطاني", "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Khalid_Alkahtany.mp3", "category": "الرقية الشرعية"},
+    {"id": "-OaIlMpvZ7dfb_P5C9ip", "name": "إدريس أبكر", "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Edres_abkr_ruqya.mp3", "category": "الرقية الشرعية"},
+
+    {"id": "-OaeLx-cEAb3cLOBLn64", "name": "عبد العزيز السحيم", "radio_url": "https://backup.qurango.net/radio/a_sheim", "category": "القرائ"},
+    {"id": "-OaeLx-cEAb3cLOBLn55", "name": "إذاعة أحمد الطرابلسي", "radio_url": "https://Qurango.net/radio/ahmed_altrabulsi", "category": "القرائ"},
+
+    {"id": "radio_quran", "name": "إذاعة القرآن الكريم", "radio_url": "https://radiocoran.ice.infomaniak.ch/coran.mp3", "category": "العامة"},
+
+    {"id": "sa", "name": "إذاعة القرآن - السعودية", "radio_url": "https://live.kwikmotion.com/sbrksaquranradiolive/ksaquranradio/chunks.m3u8", "category": "إذاعات الدول"},
+    {"id": "eg", "name": "إذاعة القرآن - القاهرة", "radio_url": "https://stream.radiojar.com/8s5u5tpdtwzuv", "category": "إذاعات الدول"},
+
+    {"id": "52", "name": "تكبيرات العيد", "radio_url": "https://qurango.net/radio/eid", "category": "منوعات"},
+    {"id": "17", "name": "أذكار الصباح", "radio_url": "https://qurango.net/radio/athkar_sabah", "category": "منوعات"},
+
+    {"id": "4", "name": "تفسير القرآن الكريم", "radio_url": "https://qurango.net/radio/tafseer", "category": "تفسير"},
+    {"id": "31", "name": "المختصر في التفسير", "radio_url": "https://qurango.net/radio/mukhtasartafsir", "category": "تفسير"},
+
+    {"id": "30", "name": "مختصر السيرة النبوية", "radio_url": "https://qurango.net/radio/almukhtasar_fi_alsiyra", "category": "السيرة النبوية"},
+    {"id": "104", "name": "في ظلال السيرة", "radio_url": "https://qurango.net/radio/fi_zilal_alsiyra", "category": "السيرة النبوية"},
+
+    {"id": "10", "name": "أحمد الطرالسي - قالون", "radio_url": "https://qurango.net/radio/ahmad_khader_altarabulsi", "category": "روايات"},
+    {"id": "22", "name": "ابراهيم الدوسري - ورش", "radio_url": "https://qurango.net/radio/ibrahim_aldosari", "category": "روايات"},
+
+    {"id": "40", "name": "ترجمة الإنجليزية - عبدالباسط", "radio_url": "https://qurango.net/radio/translation_quran_english_basit", "category": "ترجمة"},
+    {"id": "45", "name": "ترجمة التركية", "radio_url": "https://qurango.net/radio/translation_quran_turkish", "category": "ترجمة"}
+ 
     {"_comment": "======================================== قسم الرقية الشرعية ========================================"},
     {"id": "-OaIlMpvZ7dfb_P5C9io", "name": "خالد القحطاني", "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Alroqyah_Khalid_Alkahtany.mp3", "category": "الرقية الشرعية"},
     {"id": "-OaIlMpvZ7dfb_P5C9ip", "name": "إدريس أبكر", "radio_url": "https://ourquraan.com/audio/roquia/OurQuraan.Com_Edres_abkr_ruqya.mp3", "category": "الرقية الشرعية"},
