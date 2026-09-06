@@ -33,8 +33,8 @@
   {"id": "28", "name": "الفتاوى العامة", "radio_url": "https://qurango.net/radio/fatwa", "category": "منوعات", "type": "radio"},
   {"id": "17", "name": "أذكار الصباح", "radio_url": "https://qurango.net/radio/athkar_sabah", "category": "منوعات", "type": "radio"},  
   {"id": "19", "name": "إذاعة الحح", "radio_url": "https://radio.alukah.net/hajj", "category": "منوعات", "type": "radio"},
-  {"٠00": "20", "name": "أذكار المساء", "radio_url": "https://radio.al7eah.net/8010/stream", "category": "منوعات", "type": "radio"},
-  {"٠00": "18", "name": "ميراث الأنبياء", "radio_url": "https://radio.al7eah.net/8010/stream", "category": "منوعات", "type": "radio"},
+  {"id": "20", "name": "أذكار المساء", "radio_url": "https://radio.al7eah.net/8010/stream", "category": "منوعات", "type": "radio"},
+  {"id": "18", "name": "ميراث الأنبياء", "radio_url": "https://radio.al7eah.net/8010/stream", "category": "منوعات", "type": "radio"},
   
   {"id": "4", "name": "تفسير القرآن الكريم", "radio_url": "https://qurango.net/radio/tafseer", "category": "تفسير", "type": "radio"},
   {"id": "31", "name": "المختصر في التفسير", "radio_url": "https://qurango.net/radio/mukhtasartafsir", "category": "تفسير", "type": "radio"},
